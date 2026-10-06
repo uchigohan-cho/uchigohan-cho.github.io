@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#F4EEE2">
+<link rel="manifest" href="manifest.json">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="うちごはん帖">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="description" content="ふたり・家族で使えるレシピ帳。今日なに食べる？の投票やリクエスト、冷蔵庫から探す、材料費の目安つきの宅飲み割り勘。登録不要・無料。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="うちごはん帖｜ふたり・家族のレシピ帳">
@@ -117,7 +122,7 @@ h2.sec small{font-family:var(--body);font-size:12px;color:var(--sub);font-weight
 .sheet-bar{position:sticky;top:0;z-index:2;background:var(--bg);display:flex;align-items:center;gap:6px;padding:8px 10px;border-bottom:1px dashed var(--line)}
 .sheet-bar .t{font-weight:700;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .sheet-in{max-width:720px;margin:0 auto;padding-inline:16px;padding-block:0 60px}
-.hero{margin:0 -16px;aspect-ratio:16/10;max-width:calc(100% + 32px)}
+.hero{margin:0 -16px;aspect-ratio:16/10;width:calc(100% + 32px);max-width:calc(100% + 32px)}
 .dname{font-family:var(--hand);font-size:26px;line-height:1.3;margin:14px 0 4px;text-wrap:balance}
 .facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow);margin:12px 0}
 .facts div{padding:8px 4px;text-align:center;border-right:1px dashed var(--line);min-width:0}
@@ -225,6 +230,78 @@ textarea.inp{resize:vertical;min-height:80px;line-height:1.6}
 hr.dash{border:none;border-top:1px dashed var(--line);margin:18px 0}
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 [hidden]{display:none!important}
+.posc{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 10px;align-items:center;font-size:13px;color:var(--sub);margin:8px 0 4px}
+.posc input{width:100%;accent-color:var(--tomato)}
+.photo-drop{aspect-ratio:4/3}
+details.more{margin-top:16px;background:var(--paper);border-radius:var(--r);padding:10px 14px 16px;box-shadow:var(--shadow)}
+details.more>summary{cursor:pointer;font-weight:700;padding:4px 0;list-style:none}
+details.more>summary::before{content:"＋ ";color:var(--tomato)}
+details.more[open]>summary::before{content:"－ "}
+.irow input[data-f="p"]::placeholder{color:var(--kraft);opacity:1}
+.log li{grid-template-columns:auto auto minmax(0,1fr) auto}
+.log .del{padding:2px}
+.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden;pointer-events:none}
+.wantbar{margin-top:14px;background:color-mix(in srgb,var(--mustard) 12%,var(--paper));border-radius:var(--r);padding:10px 12px}
+.wantbar .wt{font-family:var(--hand);font-size:16px;margin-bottom:6px}
+.wcard{flex:none;width:92px;border:none;background:var(--paper);border-radius:12px;padding:0;overflow:hidden;box-shadow:var(--shadow);text-align:left;display:flex;flex-direction:column}
+.wph{display:block;width:100%;aspect-ratio:1;position:relative;overflow:hidden}
+.wph img{width:100%;height:100%;object-fit:cover}
+.wph .plate{width:56%;font-size:20px}
+.wn{font-size:12px;font-weight:700;line-height:1.3;padding:5px 7px 7px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.stepper.sm button{width:28px;height:28px;font-size:16px}.stepper.sm span{min-width:48px;font-size:13px}
+.a2hs{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px;align-items:start;background:color-mix(in srgb,var(--olive) 12%,var(--paper));border-radius:var(--r);padding:10px 12px;margin-top:14px;font-size:13.5px}
+.a2hs b{display:block}
+.drow{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px dotted var(--line);flex-wrap:wrap}
+.drow:last-of-type{border-bottom:none}
+.dstat{font-size:13px;font-weight:700;color:var(--sub)}
+.dstat.din-yes,.chip.din-yes[aria-pressed="true"]{color:var(--olive)}
+.dstat.din-no,.chip.din-no[aria-pressed="true"]{color:var(--sub)}
+.dstat.din-late,.chip.din-late[aria-pressed="true"]{color:var(--kraft)}
+.chip.din-yes[aria-pressed="true"]{background:var(--olive);color:var(--on-accent);border-color:var(--olive)}
+.chip.din-no[aria-pressed="true"]{background:var(--sub);color:var(--on-accent);border-color:var(--sub)}
+.chip.din-late[aria-pressed="true"]{background:var(--mustard);color:var(--on-accent);border-color:var(--mustard)}
+.inp.sm{width:auto;padding:4px 8px;font-size:14px}
+.wrow{display:grid;grid-template-columns:86px minmax(0,1fr);gap:8px;align-items:center;padding:7px 0;border-bottom:1px dotted var(--line)}
+.wrow:last-child{border-bottom:none}
+.wday{font-size:13px;font-weight:700;color:var(--sub)}
+.wday.tdy{color:var(--tomato)}
+.wchip{padding:0 0 0 10px;gap:0}
+.wchip button{border:none;background:none;padding:4px 0;font-size:13px}
+.wchip .x{padding:4px 9px;color:var(--sub)}
+.chip.addc{color:var(--tomato);font-weight:700;padding:4px 12px}
+.card2.tall{max-height:82vh;overflow-y:auto}
+.mh{font-family:var(--hand);font-size:18px;margin:22px 0 8px;display:flex;gap:8px;align-items:baseline}
+.mh small{font-family:var(--body);font-size:12px;color:var(--sub);font-weight:400}
+.agrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (min-width:560px){.agrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.acard{border:none;background:var(--paper);border-radius:var(--r);box-shadow:var(--shadow);padding:0;overflow:hidden;text-align:left;display:flex;flex-direction:column;min-width:0}
+.acard.nophoto{background:color-mix(in srgb,var(--mustard) 10%,var(--paper))}
+.aph{display:block;aspect-ratio:1;width:100%;overflow:hidden}
+.aph img{width:100%;height:100%;object-fit:cover}
+.ab{display:flex;flex-direction:column;gap:2px;padding:8px 10px 10px;min-width:0}
+.ab b{font-size:13.5px;overflow-wrap:anywhere}
+.am{font-size:12.5px;overflow-wrap:anywhere;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.mbig{width:100%;max-width:100%;border-radius:12px;display:block;margin:6px 0}
+.lthumb{width:44px;height:44px;object-fit:cover;border-radius:8px}
+.jcode{font-size:32px;font-weight:700;letter-spacing:.25em;text-align:center;margin:10px 0 2px;color:var(--tomato)}
+.pvote{font-size:12px;font-weight:700;color:var(--tomato);display:flex;flex-direction:column;align-items:flex-end;margin-bottom:2px}
+.pvote .hint{font-weight:400;white-space:normal;max-width:9em;text-align:right}
+.cele{text-align:center;position:relative}
+.cele h3{font-size:21px;margin:4px 0 8px;text-wrap:balance}
+.cnum{font-family:var(--hand);font-size:64px;line-height:1;color:var(--tomato)}
+.thmsg{font-family:var(--hand);font-size:20px;margin:10px 0 6px;padding:12px;background:color-mix(in srgb,var(--mustard) 14%,var(--paper));border-radius:12px;overflow-wrap:anywhere}
+.confetti{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:-1}
+.modal .card2{position:relative}
+.confetti i{position:absolute;top:-12px;width:8px;height:12px;border-radius:2px;opacity:.9;animation-name:fall;animation-timing-function:linear;animation-iteration-count:2}
+@keyframes fall{to{transform:translateY(105vh) rotate(540deg)}}
+.sub3{grid-column:2;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.sthumb{width:52px;height:52px;object-fit:cover;border-radius:8px}
+.stepimg{display:block;width:100%;max-width:320px;border-radius:10px;margin-top:8px}
+.ldate{border:none;background:none;padding:0;font:inherit;color:var(--ink);text-decoration:underline dotted;text-underline-offset:3px}
+.shelf{margin-top:8px;background:color-mix(in srgb,var(--sky) 12%,var(--paper));border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;font-size:13.5px}
+.rcard{padding-bottom:40px}
+.rcard .steps li{grid-template-columns:30px minmax(0,1fr)}
+.rcard .sn{cursor:default}
 body{margin:0} img{max-width:100%}
 a{color:var(--tomato)}
 .hh{margin:14px 0 0;font-family:var(--hand);font-size:17px;display:flex;align-items:center;gap:8px}
@@ -262,7 +339,7 @@ a{color:var(--tomato)}
 <nav class="tabs" aria-label="メニュー">
   <div class="tabs-in">
     <button class="tab" data-tab="recipes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3Z"/><path d="M5 17a3 3 0 0 1 3-3h11M9 8h6"/></svg>レシピ</button>
-    <button class="tab" data-tab="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h18a9 9 0 0 1-18 0Z"/><path d="M9 8c0-1.5 1.5-1.5 1.5-3M14 8c0-1.5 1.5-1.5 1.5-3"/></svg>今日なに食べる<span class="badge" id="reqBadge" hidden></span></button>
+    <button class="tab" data-tab="today"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 12h18a9 9 0 0 1-18 0Z"/><path d="M9 8c0-1.5 1.5-1.5 1.5-3M14 8c0-1.5 1.5-1.5 1.5-3"/></svg>今日のごはん<span class="badge" id="reqBadge" hidden></span></button>
     <button class="tab" data-tab="fridge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><path d="M6 10h12M9 6v2M9 13v3"/></svg>冷蔵庫から</button>
     <button class="tab" data-tab="party"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 3h6l-1 8a2 2 0 0 1-4 0Z"/><path d="M10 13v6M7.5 20h5"/><path d="M15 9h5v9a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2Z"/></svg>宅飲み割り勘</button>
   </div>
@@ -352,6 +429,62 @@ const PRICE = [
   {k:['片栗粉'], u:'大さじ', p:3},
   {k:['小麦粉','薄力粉'], u:'大さじ', p:2},
   {k:['からし','唐辛子','赤唐辛子'], u:'本', p:5},
+  {k:['ささみ'], u:'g', p:1.2, alt:{'本':50}},
+  {k:['鶏肉','とり肉'], u:'g', p:1.2, alt:{'枚':300}},
+  {k:['牛すじ'], u:'g', p:2.5},
+  {k:['ハム'], u:'枚', p:25},
+  {k:['えび','エビ','海老'], u:'g', p:3, alt:{'尾':15}},
+  {k:['いか','イカ'], u:'杯', p:300},
+  {k:['たこ','タコ'], u:'g', p:4},
+  {k:['あさり'], u:'g', p:1.5, alt:{'パック':300}},
+  {k:['しらす'], u:'g', p:5},
+  {k:['明太子','たらこ'], u:'腹', p:300},
+  {k:['さば缶','鯖缶','サバ缶'], u:'缶', p:200},
+  {k:['かまぼこ'], u:'本', p:150},
+  {k:['ちくわぶ'], u:'本', p:100},
+  {k:['がんも'], u:'個', p:50},
+  {k:['餅巾着','もち巾着'], u:'個', p:80},
+  {k:['もち','餅'], u:'個', p:25},
+  {k:['油揚げ'], u:'枚', p:40},
+  {k:['納豆'], u:'パック', p:35},
+  {k:['うずら'], u:'個', p:15},
+  {k:['春雨'], u:'g', p:1},
+  {k:['中華麺','焼きそば'], u:'玉', p:60},
+  {k:['そば'], u:'玉', p:60, alt:{'束':1.3}},
+  {k:['食パン'], u:'枚', p:25},
+  {k:['ほうれん草'], u:'束', p:150},
+  {k:['小松菜'], u:'束', p:130},
+  {k:['ニラ','にら'], u:'束', p:100},
+  {k:['ブロッコリー'], u:'株', p:200, alt:{'房':0.07}},
+  {k:['レタス'], u:'玉', p:200, alt:{'枚':0.07}},
+  {k:['大葉'], u:'枚', p:10},
+  {k:['三つ葉'], u:'束', p:100},
+  {k:['かぼちゃ'], u:'g', p:0.4, alt:{'個':1200}},
+  {k:['さつまいも'], u:'本', p:150},
+  {k:['里芋','さといも'], u:'個', p:40},
+  {k:['れんこん'], u:'g', p:0.8, alt:{'節':250}},
+  {k:['ごぼう'], u:'本', p:150},
+  {k:['アボカド'], u:'個', p:150},
+  {k:['レモン'], u:'個', p:100},
+  {k:['りんご'], u:'個', p:150},
+  {k:['バナナ'], u:'本', p:30},
+  {k:['生クリーム'], u:'ml', p:1.2},
+  {k:['ヨーグルト'], u:'g', p:0.3},
+  {k:['ホットケーキミックス'], u:'g', p:0.6},
+  {k:['パン粉'], u:'大さじ', p:2},
+  {k:['天かす'], u:'大さじ', p:3},
+  {k:['かつお節','鰹節','削り節'], u:'g', p:6, alt:{'袋':5}},
+  {k:['昆布'], u:'cm', p:10},
+  {k:['豆板醤'], u:'小さじ', p:8},
+  {k:['コチュジャン'], u:'大さじ', p:20},
+  {k:['オイスター'], u:'大さじ', p:15},
+  {k:['ポン酢','ぽん酢'], u:'大さじ', p:6},
+  {k:['めんつゆ'], u:'大さじ', p:5},
+  {k:['焼肉のたれ','焼き肉のたれ'], u:'大さじ', p:10},
+  {k:['ソース'], u:'大さじ', p:5},
+  {k:['カレー','シチュー'], u:'箱', p:230, alt:{'皿分':0.11,'片':0.125}},
+  {k:['トマト缶'], u:'缶', p:120},
+  {k:['コーン'], u:'g', p:0.8, alt:{'缶':130}},
   {k:['塩','こしょう','胡椒'], u:'少々', p:1},
 ];
 const PKEYS = PRICE.flatMap(e => e.k.map(k => ({k, e}))).sort((a, b) => b.k.length - a.k.length);
@@ -363,7 +496,7 @@ function parseAmt(raw){
   const frac = t => { if (t === '½' || t === '半') return .5; if (t.includes('/')) { const [a, b] = t.split('/').map(Number); return b ? a / b : NaN; } return Number(t); };
   let m = s.match(/(大さじ|小さじ)([\d.]+(?:\/[\d.]+)?|½|半)/);
   if (m) return {q: frac(m[2]), u: m[1]};
-  m = s.match(/([\d.]+(?:\/[\d.]+)?|½|半)(kg|g|グラム|ml|cc|L|個|本|枚|丁|玉|袋|パック|片|かけ|合|缶|切れ|杯|株|束|cm)?/);
+  m = s.match(/([\d.]+(?:\/[\d.]+)?|½|半)(kg|g|グラム|ml|cc|L|個|本|枚|丁|玉|袋|パック|片|かけ|合|缶|切れ|杯|株|束|cm|尾|房|節|腹|箱|皿分)?/);
   if (!m) return null;
   let q = frac(m[1]), u = m[2] || '';
   if (s.match(/1\/2|半分/) && !m[2]) q = .5;
@@ -375,6 +508,8 @@ function parseAmt(raw){
 }
 function estPrice(name, amount){
   if (/^(水|お湯|湯|氷|米のとぎ汁)$/.test(normIng(name))) return 0;
+  const L = (typeof S !== 'undefined' && S && S.prices) ? S.prices[normIng(name)] : null;
+  if (L) { if (L.fixed != null) return L.fixed; const a = parseAmt(amount); if (a && a.u === L.u) return Math.max(1, Math.round(a.q * L.p)); }
   const hit = PKEYS.find(x => (name || '').includes(x.k));
   if (!hit) return null;
   const e = hit.e, a = parseAmt(amount);
@@ -391,10 +526,13 @@ function estPrice(name, amount){
 }
 const ingPrice = i => (i.p !== '' && i.p != null && !isNaN(Number(i.p))) ? {v:Number(i.p), est:false} : (() => { const v = estPrice(i.n, i.a); return v == null ? null : {v, est:true}; })();
 function recipeCost(r){
-  let sum = 0, unknown = 0;
-  for (const i of r.ings) { const p = ingPrice(i); if (p) sum += p.v; else unknown++; }
-  return {sum, unknown, per: r.serv ? sum / r.serv : sum};
+  const serv = Number(r.serv) || 1;
+  if (r.total !== '' && r.total != null && Number(r.total) > 0) { const sum = Number(r.total); return {sum, unknown:0, per:sum / serv, known:true, manual:true}; }
+  let sum = 0, unknown = 0, priced = 0;
+  for (const i of r.ings || []) { const p = ingPrice(i); if (p) { sum += p.v; if (p.v > 0) priced++; } else unknown++; }
+  return {sum, unknown, per:sum / serv, known:priced > 0};
 }
+const imgStyle = r => { const p = r.pos || {}; const x = p.x ?? 50, y = p.y ?? 50, z = p.z ?? 1; return `object-position:${x}% ${y}%;transform:scale(${z});transform-origin:${x}% ${y}%`; };
 const totalMin = r => (Number(r.prep) || 0) + (Number(r.cook) || 0);
 const normIng = n => (n || '').replace(/[（(].*?[)）]/g, '').replace(/^[A-ZＡ-Ｚ・\s]+/, '').trim();
 
@@ -443,8 +581,8 @@ function sample(){
 }
 const LS = {get(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }, set(k, v){ try { localStorage.setItem(k, v); } catch(e){} }, del(k){ try { localStorage.removeItem(k); } catch(e){} }};
 const SITE = location.origin + location.pathname;
-let MODE = 'local', fb = null, HID = null, unsub = [], base = {r:{}, q:{}, h:{}}, gotH = false, syncT = null;
-const HFIELDS = ['name','members','vote','fridge','shop','party'];
+let MODE = 'local', fb = null, HID = null, unsub = [], base = {r:{}, q:{}, m:{}, h:{}, s:{}}, gotH = false, syncT = null;
+const HFIELDS = ['name','members','vote','fridge','shop','party','prices','dinner','week','thanks','opts'];
 const clean = o => JSON.parse(JSON.stringify(o ?? null));
 function load(){ try { const t = localStorage.getItem(KEY); if (t) { const x = JSON.parse(t); x.name = x.name || 'お試しのレシピ帳'; return x; } } catch(e){} const x = sample(); x.name = 'お試しのレシピ帳'; return x; }
 let saveWarned = false;
@@ -457,18 +595,23 @@ function save(){
 async function sync(){
   syncT = null;
   if (MODE !== 'cloud' || !HID || !S) return;
-  const h = fb.db.collection('households').doc(HID), b = fb.db.batch(); let n = 0;
+  const h = fb.db.collection('households').doc(HID), ops = [];
   const coll = (name, list, map) => {
-    for (const x of list) { const j = JSON.stringify(x); if (map[x.id] !== j) { b.set(h.collection(name).doc(x.id), clean(x)); map[x.id] = j; n++; } }
-    for (const id of Object.keys(map)) if (!list.some(x => x.id === id)) { b.delete(h.collection(name).doc(id)); delete map[id]; n++; }
+    for (const x of list) { const j = JSON.stringify(x); if (map[x.id] !== j) { const v = clean(x); ops.push(b => b.set(h.collection(name).doc(x.id), v)); map[x.id] = j; } }
+    for (const id of Object.keys(map)) if (!list.some(x => x.id === id)) { ops.push(b => b.delete(h.collection(name).doc(id))); delete map[id]; }
   };
   coll('recipes', S.recipes, base.r);
   coll('requests', S.requests.slice(0, 40), base.q);
+  coll('memories', S.memories || [], base.m);
   const upd = {};
   for (const f of HFIELDS) { const j = JSON.stringify(S[f] ?? null); if (base.h[f] !== j) { upd[f] = clean(S[f]); base.h[f] = j; } }
-  if (Object.keys(upd).length) { b.update(h, upd); n++; }
-  if (!n) return;
-  try { await b.commit(); } catch(e){ console.error(e); toast('保存できませんでした。電波のいい場所でもう一度ためしてください'); }
+  if (Object.keys(upd).length) ops.push(b => b.update(h, upd));
+  for (const r of S.recipes) { const sid = r.share?.sid; if (!sid || (r.share.exp || 0) < Date.now()) continue; const j = JSON.stringify(shareSnap(r)); if (base.s[sid] !== j) { base.s[sid] = j; fb.db.collection('shares').doc(sid).update({recipe:JSON.parse(j)}).catch(e => console.error(e)); } }
+  const pid = S.party?.share?.pid;
+  if (pid) { const pub = partyPublic(), j = JSON.stringify(pub); if (base.p !== j) { base.p = j; fb.db.collection('parties').doc(pid).update(pub).catch(e => console.error(e)); } }
+  if (!ops.length) return;
+  try { for (let i = 0; i < ops.length; i += 20) { const b = fb.db.batch(); ops.slice(i, i + 20).forEach(f => f(b)); await b.commit(); } }
+  catch(e){ console.error(e); toast('保存できませんでした。電波のいい場所でもう一度ためしてください'); }
 }
 const dirtyColl = (list, map) => { const d = {}; for (const x of list) if (map[x.id] !== JSON.stringify(x)) d[x.id] = x; return d; };
 
@@ -484,8 +627,8 @@ function signIn(){
 }
 function randId(n){ const a = 'abcdefghijkmnpqrstuvwxyz23456789'; const v = new Uint8Array(n); crypto.getRandomValues(v); return [...v].map(x => a[x % a.length]).join(''); }
 function connect(hid){
-  MODE = 'cloud'; HID = hid; gotH = false; base = {r:{}, q:{}, h:{}};
-  S = {name:'', members:[], recipes:[], requests:[], vote:{date:today(), items:[]}, fridge:[], shop:{}, party:{rids:[], people:4, extras:[], payers:[]}, me:LS.get('ug-me-' + hid)};
+  MODE = 'cloud'; HID = hid; gotH = false; base = {r:{}, q:{}, m:{}, h:{}, s:{}};
+  S = {name:'', members:[], recipes:[], requests:[], vote:{date:today(), items:[]}, fridge:[], shop:{}, prices:{}, memories:[], dinner:{date:today(), st:{}}, week:{}, party:{rids:[], people:4, extras:[], payers:[]}, me:LS.get('ug-me-' + hid)};
   showLoading('レシピ帳をひらいています…');
   const h = fb.db.collection('households').doc(hid);
   const fail = e => { console.error(e); unsub.forEach(f => f()); unsub = []; LS.del('ug-hid'); S = null; HID = null; showWelcome('このレシピ帳をひらけませんでした。招待リンクからもう一度参加してください。'); };
@@ -493,8 +636,9 @@ function connect(hid){
     if (!doc.exists) { fail('gone'); return; }
     const d = doc.data();
     for (const f of HFIELDS) { const j = JSON.stringify(d[f] ?? null); if (!gotH || JSON.stringify(S[f] ?? null) === base.h[f]) { S[f] = clean(d[f]) ?? S[f]; } base.h[f] = j; }
+    S._owner = (d.uids || [])[0];
     if (!S.members.some(m => m.id === S.me)) S.me = S.members[0]?.id;
-    if (S.vote?.date !== today()) { S.vote = {date:today(), items:[]}; save(); }
+    if (normDaily()) save();
     gotH = true; refresh();
   }, fail));
   unsub.push(h.collection('recipes').onSnapshot(qs => {
@@ -502,7 +646,15 @@ function connect(hid){
     base.r = {}; const list = [];
     qs.docs.forEach(doc => { const r = doc.data(); base.r[r.id] = JSON.stringify(r); if (removed.has(r.id)) return; list.push(dirty[r.id] || r); });
     for (const id in dirty) if (!list.some(r => r.id === id)) list.push(dirty[id]);
+    for (const r of list) if (r.share?.sid && !dirty[r.id]) base.s[r.share.sid] = JSON.stringify(shareSnap(r));
     S.recipes = list; refresh();
+  }, fail));
+  unsub.push(h.collection('memories').onSnapshot(qs => {
+    const dirty = dirtyColl(S.memories, base.m), removed = new Set(Object.keys(base.m).filter(id => !S.memories.some(x => x.id === id)));
+    base.m = {}; const list = [];
+    qs.docs.forEach(doc => { const x = doc.data(); base.m[x.id] = JSON.stringify(x); if (removed.has(x.id)) return; list.push(dirty[x.id] || x); });
+    for (const id in dirty) if (!list.some(x => x.id === id)) list.push(dirty[id]);
+    S.memories = list; refresh();
   }, fail));
   unsub.push(h.collection('requests').onSnapshot(qs => {
     const dirty = dirtyColl(S.requests, base.q);
@@ -515,8 +667,77 @@ function connect(hid){
 function refresh(){
   if (!gotH || !S) return;
   showApp();
-  if (UI.sheet === 'detail') { if (byId(UI.detail)) { const y = document.querySelector('.sheet')?.scrollTop, memo = document.getElementById('logmemo')?.value, typing = document.activeElement?.id === 'logmemo'; openDetail(UI.detail); const sh = document.querySelector('.sheet'); if (sh && y) sh.scrollTop = y; const m = document.getElementById('logmemo'); if (m && memo) m.value = memo; if (m && typing) m.focus(); } else closeLayer(); }
+  if (UI.sheet === 'detail') { if (byId(UI.detail)) redrawDetail(); else closeLayer(); }
   else render();
+  clearTimeout(UI.celT); UI.celT = setTimeout(checkCelebrate, 700);
+}
+
+function editLog(i){
+  const r = byId(UI.detail), l = r?.logs[i]; if (!l) return;
+  sheetModal(`<h3>記録を直す</h3>
+    <div class="f" style="margin-top:4px"><label for="el-date">作った日</label><input class="inp" type="date" id="el-date" value="${esc(l.date)}" max="${today()}"></div>
+    <div class="f"><span class="lbl">作った人</span><div class="chips">${S.members.map(m => `<button class="chip" data-elby="${m.id}" aria-pressed="${l.by === m.id}"><i class="dot" style="background:${m.color}"></i>${esc(m.name)}</button>`).join('')}</div></div>
+    <div class="f"><span class="lbl">おいしさ</span><div class="chips">${[1,2,3,4,5].map(n => `<button class="chip" data-elrate="${n}" aria-pressed="${l.rate === n}">${'★'.repeat(n)}</button>`).join('')}</div></div>
+    <div class="f"><label for="el-memo">ひとこと</label><input class="inp" id="el-memo" value="${esc(l.memo || '')}"></div>
+    <div class="row" style="justify-content:flex-end;margin-top:14px"><button class="btn ghost" data-m="no">やめる</button><button class="btn primary" data-elsave="1">保存</button></div>`,
+    (e, close) => {
+      const by = e.target.closest('[data-elby]'), rt = e.target.closest('[data-elrate]');
+      if (by) { by.parentElement.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === by)); return; }
+      if (rt) { rt.parentElement.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === rt)); return; }
+      if (e.target.closest('[data-elsave]')) {
+        const box = e.target.closest('.card2'), dv = box.querySelector('#el-date').value;
+        l.date = dv && dv <= today() ? dv : l.date;
+        l.by = box.querySelector('[data-elby][aria-pressed="true"]')?.dataset.elby || l.by;
+        l.rate = Number(box.querySelector('[data-elrate][aria-pressed="true"]')?.dataset.elrate || l.rate);
+        l.memo = box.querySelector('#el-memo').value.trim();
+        close(); reDetail(); toast('記録を直しました');
+      }
+    });
+}
+
+/* ---------- milestones / thanks ---------- */
+const MS = [10, 30, 50, 100, 150, 200, 300, 500, 1000];
+function cookCounts(){ const c = {}; for (const r of S.recipes) for (const l of r.logs || []) c[l.by] = (c[l.by] || 0) + 1; return c; }
+function msSeen(){ try { return JSON.parse(LS.get('ug-ms-' + (HID || 'local')) || '{}'); } catch(e){ return {}; } }
+function msSave(v){ LS.set('ug-ms-' + (HID || 'local'), JSON.stringify(v)); }
+function checkCelebrate(){
+  if (!S || !appShown || document.querySelector('.modal') || UI.sheet === 'editor' || UI.sheet === 'settings') return;
+  const seen = msSeen();
+  const th = (S.thanks || []).find(t => t.to === S.me && !(seen.th || []).includes(t.id));
+  if (th) { seen.th = [...(seen.th || []), th.id].slice(-60); msSave(seen); showThanks(th); return; }
+  const counts = cookCounts();
+  const order = [S.me, ...S.members.map(m => m.id).filter(id => id !== S.me)];
+  for (const id of order) {
+    const m = S.members.find(x => x.id === id); if (!m) continue;
+    const hit = MS.filter(x => x <= (counts[id] || 0)).pop();
+    if (hit && hit > (seen[id] || 0)) { seen[id] = hit; msSave(seen); celebrate(m, hit); return; }
+  }
+  if (S.members.length > 1) {
+    const tot = Object.values(counts).reduce((a, b) => a + b, 0), hit = MS.filter(x => x <= tot).pop();
+    if (hit && hit > (seen._all || 0)) { seen._all = hit; msSave(seen); celebrateAll(hit); }
+  }
+}
+function confetti(){ const cs = ['var(--tomato)','var(--mustard)','var(--olive)','var(--sky)','var(--pink)']; return `<div class="confetti" aria-hidden="true">${Array.from({length:26}, (_, i) => `<i style="left:${(i * 37) % 100}%;background:${cs[i % cs.length]};animation-delay:${(i % 9) * 0.12}s;animation-duration:${1.8 + (i % 5) * 0.25}s"></i>`).join('')}</div>`; }
+function celebrate(m, n){
+  const mine = m.id === S.me, others = S.members.length > 1;
+  sheetModal(`${confetti()}<div class="cele"><div class="cnum num">${n}</div><h3>${mine ? `${n}回目のごはん、おつかれさま！` : `${esc(m.name)}さんのごはん、${n}回！`}</h3>
+    <p class="muted" style="margin:0 0 12px">${mine ? `あなたが作ったごはんが${n}回になりました。${others ? 'いつも作ってくれてありがとう、と家族にも伝わるといいですね。' : 'これからもおいしいごはんを。'}` : `${esc(m.name)}さんが作ってくれたごはんが${n}回になりました。ありがとうを伝えませんか？`}</p>
+    ${mine ? '' : `<input class="inp" id="thmsg" value="いつもおいしいごはんをありがとう！" maxlength="60" aria-label="ひとこと"><button class="btn primary" style="width:100%;margin-top:10px" data-th="${m.id}" data-n="${n}">ありがとうを送る</button>`}
+    <button class="btn ghost" style="width:100%;margin-top:8px" data-m="no">${mine ? 'うれしい！' : 'あとで'}</button></div>`,
+    (e, close) => { const b = e.target.closest('[data-th]'); if (!b) return;
+      const msg = (document.getElementById('thmsg')?.value || '').trim() || 'いつもありがとう！';
+      S.thanks = [...(S.thanks || []), {id:uid(), from:S.me, to:b.dataset.th, n:Number(b.dataset.n), msg, date:today()}].slice(-30);
+      close(); save(); toast(`${m.name}さんに「ありがとう」を送りました`); });
+}
+function celebrateAll(n){
+  sheetModal(`${confetti()}<div class="cele"><div class="cnum num">${n}</div><h3>${S.members.length === 2 ? 'ふたり' : 'みんな'}で${n}回のごはん！</h3>
+    <p class="muted" style="margin:0 0 12px">「${esc(S.name)}」で作ったごはんが、あわせて${n}回になりました。いつもおつかれさま！</p>
+    <button class="btn primary" style="width:100%" data-m="no">これからもよろしく</button></div>`, () => {});
+}
+function showThanks(t){
+  sheetModal(`${confetti()}<div class="cele"><h3>${esc(meName(t.from))}さんから「ありがとう」が届きました</h3>
+    <p class="thmsg">${esc(t.msg)}</p><p class="hint" style="margin:0 0 12px">ごはん${t.n}回記念・${esc(md(t.date))}</p>
+    <button class="btn primary" style="width:100%" data-m="no">うれしい！</button></div>`, () => {});
 }
 async function createHousehold(name, you, withSamples){
   const user = fb.auth.currentUser || await signIn();
@@ -541,6 +762,19 @@ async function joinHousehold(hid, mid, newName){
   history.replaceState(null, '', SITE);
   connect(hid);
 }
+async function forkHousehold(){
+  const user = fb.auth.currentUser || await signIn();
+  const me = clean(S.members.find(m => m.id === S.me) || {id:uid(), name:'わたし', color:'var(--tomato)'});
+  const recs = S.recipes.map(r => Object.assign(clean(r), {share:null, hearts:(r.hearts || []).filter(x => x === me.id), logs:(r.logs || []).filter(l => l.by === me.id)}));
+  const name = (S.name + '（コピー）').slice(0, 30), prices = clean(S.prices || {}), fridge = clean(S.fridge || []);
+  showLoading('レシピをコピーしています…');
+  const hid = randId(20), h = fb.db.collection('households').doc(hid);
+  await h.set({name, uids:[user.uid], members:[me], vote:{date:today(), items:[]}, fridge, shop:{}, prices, party:{rids:[], people:4, extras:[], payers:[]}, created:Date.now()});
+  for (let i = 0; i < recs.length; i += 20) { const b = fb.db.batch(); recs.slice(i, i + 20).forEach(r => b.set(h.collection('recipes').doc(r.id), r)); await b.commit(); }
+  unsub.forEach(f => f()); unsub = [];
+  LS.set('ug-hid', hid); LS.set('ug-me-' + hid, me.id);
+  location.href = SITE;
+}
 function leaveDevice(){ unsub.forEach(f => f()); unsub = []; LS.del('ug-hid'); location.href = SITE; }
 async function deleteHousehold(){
   const h = fb.db.collection('households').doc(HID);
@@ -553,7 +787,7 @@ async function deleteHousehold(){
 function shell(on){ document.querySelector('.tabs').hidden = !on; document.querySelector('.who').hidden = !on; document.getElementById('openSettings').hidden = !on; }
 function showLoading(msg){ shell(false); document.getElementById('layer').innerHTML = ''; document.getElementById('view').innerHTML = `<div class="empty" style="margin-top:40px"><b>${esc(msg)}</b></div>`; }
 let appShown = false;
-function showApp(){ if (appShown) return; appShown = true; shell(true); }
+function showApp(){ if (appShown) return; appShown = true; shell(true); const t = LS.get('ug-toast'); if (t) { LS.del('ug-toast'); setTimeout(() => toast(t), 400); } }
 const FEATS = [
   ['ふたりで、家族で', 'それぞれのスマホから同じレシピ帳に。登録はいりません。'],
   ['今日なに食べる？が決まる', '「食べたい！」リクエスト、候補への投票、ランダム献立。'],
@@ -572,6 +806,8 @@ function showWelcome(err){
       <button class="btn primary" data-act="gocreate">レシピ帳をつくる（無料）</button>
       <button class="btn ghost" data-act="trydemo">まずはお試しで触ってみる</button>
     </div>
+    <div class="panel"><label for="jc" style="font-weight:700">参加コードで入る</label><p class="hint" style="margin:0 0 6px">家族から6文字のコードをもらったとき・ホーム画面のアイコンから開いたとき</p>
+      <div class="row" style="flex-wrap:nowrap"><input class="inp num" id="jc" placeholder="例：K7P2QX" maxlength="6" autocapitalize="characters" autocomplete="off" style="text-transform:uppercase;letter-spacing:.2em"><button class="btn olive" data-act="usecode" style="flex:none">入る</button></div></div>
     <ul class="w-feats">${FEATS.map(([t, d], i) => `<li><span class="w-n num">${i + 1}</span><div><b>${t}</b><span>${d}</span></div></li>`).join('')}</ul>
     <p class="hint" style="text-align:center">家族に招待されたときは、届いたリンクを開いてください。<br><a href="terms.html">利用規約・プライバシーポリシー</a></p>
   </section>`;
@@ -614,10 +850,22 @@ async function showJoin(hid){
     </section>`;
   } catch(e){ console.error(e); history.replaceState(null, '', SITE); showWelcome('招待リンクが見つかりませんでした。送ってくれた人に、もう一度リンクをもらってください。'); }
 }
-function startDemo(){ MODE = 'local'; LS.set('ug-demo', '1'); S = load(); if (S.vote?.date !== today()) S.vote = {date:today(), items:[]}; showApp(); render(); }
+function startDemo(){ MODE = 'local'; LS.set('ug-demo', '1'); S = load(); normDaily(); showApp(); render(); setTimeout(checkCelebrate, 700); }
+function normDaily(){
+  const before = JSON.stringify([S.vote, S.dinner, S.week]);
+  if (S.vote?.date !== today()) S.vote = {date:today(), items:[]};
+  if (!S.dinner || S.dinner.date !== today()) S.dinner = {date:today(), st:{}};
+  S.week = S.week || {}; for (const k of Object.keys(S.week)) if (k < today()) delete S.week[k];
+  S.memories = S.memories || []; S.prices = S.prices || {};
+  return before !== JSON.stringify([S.vote, S.dinner, S.week]);
+}
 async function boot(){
   if (!window.UG_FIREBASE || typeof firebase === 'undefined') { startDemo(); return; }
   initFirebase();
+  const shared = new URLSearchParams(location.search).get('r');
+  if (shared) { showSharedRecipe(shared); return; }
+  const party = new URLSearchParams(location.search).get('party');
+  if (party) { showGuest(party); return; }
   const join = new URLSearchParams(location.search).get('join');
   if (join) { showJoin(join); return; }
   const hid = LS.get('ug-hid');
@@ -646,15 +894,68 @@ const I = {
   plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
   search:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>',
   dice:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3.5" y="3.5" width="17" height="17" rx="4"/><circle cx="8.5" cy="8.5" r="1.2" fill="currentColor"/><circle cx="15.5" cy="15.5" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>',
+  cam:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M4 8h3l2-3h6l2 3h3v11H4Z"/><circle cx="12" cy="13" r="3.5"/></svg>',
   copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V5a1 1 0 0 0-1-1H5a1 1 0 0 0-1 1v10a1 1 0 0 0 1 1h3"/></svg>',
 };
 
 function thumb(r, big){
-  if (r.photo) return `<img src="${esc(r.photo)}" alt="">`;
+  if (r.photo) return `<img src="${esc(r.photo)}" alt="" style="${imgStyle(r)}">`;
   const bg = `background:color-mix(in srgb, ${catColor(r.cat)} 22%, var(--soft))`;
   return `<div style="${bg};position:absolute;inset:0;display:grid;place-items:center"><div class="plate"${big ? '' : ''}>${esc((r.name || '？').slice(0, 1))}</div></div>`;
 }
 const stars = n => '★'.repeat(n) + '<span style="opacity:.3">' + '★'.repeat(5 - n) + '</span>';
+
+/* ---------- shelf life (目安) ---------- */
+function predictShelf(r){
+  const ingT = (r.ings || []).map(i => i.n).join(' '), all = `${r.name} ${ingT} ${(r.steps || []).map(x => x.t).join(' ')}`;
+  const base = {'主菜':3, '副菜':3, '汁物':2, 'ご飯・麺':1, 'おつまみ':2, 'おやつ':3, '作り置き':4};
+  let f = base[r.cat] ?? 2; const notes = [], noFreeze = [];
+  const cap = (n, why) => { if (n < f) f = n; if (why) notes.push(why); };
+  if (/刺身|生魚|カルパッチョ|ユッケ|たたき|生卵|卵黄|温玉|温泉卵|半熟/.test(all)) cap(1, '生もの・半熟の卵が入るので、その日か翌日に');
+  if (/マヨ/.test(all) && /和え|サラダ|あえ/.test(all)) cap(2, 'マヨネーズで和えたものは傷みやすい');
+  if (/サラダ|レタス|ベビーリーフ|生野菜/.test(all) && !/漬|マリネ|ピクルス/.test(all)) cap(1, '生野菜は水っぽくなりやすい');
+  if (/揚げ|唐揚|からあげ|フライ|天ぷら|コロッケ/.test(all.replace(/厚揚げ|油揚げ|揚げ玉|ごぼう天|さつま揚げ/g, ''))) cap(2, '揚げ物は日がたつとベチャッとしやすい');
+  if (/カレー|シチュー/.test(all)) cap(2, 'カレー・シチューは粗熱をとったらすぐ冷蔵庫へ（鍋のまま常温に置かない）');
+  if (/浅漬|漬け|ピクルス|マリネ|南蛮/.test(all) && f >= 2) { f = Math.min(Math.max(f, 3), 4); notes.push('酢や塩がきいたものは比較的もちます'); }
+  if (/じゃがいも|じゃが芋/.test(ingT)) noFreeze.push('じゃがいもはボソボソになる（取り除けば冷凍できます）');
+  if (/豆腐/.test(ingT)) noFreeze.push('豆腐は食感が変わる');
+  if (/こんにゃく/.test(ingT)) noFreeze.push('こんにゃくはスカスカになる');
+  if (/卵|たまご/.test(ingT) && /ゆで|おでん|煮卵|味玉|味付け卵/.test(all)) noFreeze.push('ゆで卵の白身はゴムのようになる');
+  if (/レタス|きゅうり|トマト|サラダ/.test(all)) noFreeze.push('生野菜は水っぽくなる');
+  if (/マヨ/.test(all)) noFreeze.push('マヨネーズは分離する');
+  if (/刺身|生魚|カルパッチョ/.test(all)) noFreeze.push('生ものは冷凍に向かない');
+  if (/ご飯|ごはん|炊き込み|チャーハン|おにぎり|カレー/.test(all)) notes.push('ご飯・カレーは小分けにして冷凍がおすすめ');
+  const fridgeTxt = f <= 1 ? '当日〜翌日' : `${f - 1}〜${f}日`;
+  const z = noFreeze.length ? 0 : (r.cat === '汁物' ? 2 : 3);
+  return {fLow:Math.max(1, f - 1), fridgeTxt, z, freezeTxt:z ? `${z - 1}〜${z}週間` : '冷凍は不向き', notes, noFreeze};
+}
+
+/* ---------- dates / modals ---------- */
+const isoOf = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+const WD = '日月火水木金土';
+function weekDays(){ const out = []; for (let i = 0; i < 7; i++) { const d = new Date(); d.setDate(d.getDate() + i); out.push({iso:isoOf(d), label:`${d.getMonth() + 1}/${d.getDate()}（${WD[d.getDay()]}）`, today:i === 0}); } return out; }
+const md = iso => { const [y, m, d] = iso.split('-'); return `${Number(m)}/${Number(d)}`; };
+function sheetModal(html, onClick){
+  const d = document.createElement('div'); d.className = 'modal';
+  d.innerHTML = `<div class="card2 tall">${html}</div>`;
+  d.addEventListener('click', e => { if (e.target === d || e.target.closest('[data-m="no"]')) { d.remove(); return; } onClick(e, () => d.remove()); });
+  document.body.appendChild(d); return d;
+}
+function pickRecipe(title, fn){
+  sheetModal(`<h3>${esc(title)}</h3>${CATS.map(c => { const rs = S.recipes.filter(r => r.cat === c.k); return rs.length ? `<div class="hint" style="margin-top:8px">${c.k}</div><div class="chips">${rs.map(r => `<button class="chip" data-pick="${r.id}">${esc(r.name)}</button>`).join('')}</div>` : ''; }).join('') || '<p class="hint">レシピがまだありません</p>'}<div class="row" style="justify-content:flex-end;margin-top:14px"><button class="btn ghost" data-m="no">やめる</button></div>`,
+    (e, close) => { const b = e.target.closest('[data-pick]'); if (b) { close(); fn(b.dataset.pick); } });
+}
+function pickDay(fn){
+  sheetModal(`<h3>どの日の献立に入れる？</h3><div class="chips" style="margin-top:6px">${weekDays().map(d => `<button class="chip" data-pday="${d.iso}">${d.label}${d.today ? ' 今日' : ''}</button>`).join('')}</div><div class="row" style="justify-content:flex-end;margin-top:14px"><button class="btn ghost" data-m="no">やめる</button></div>`,
+    (e, close) => { const b = e.target.closest('[data-pday]'); if (b) { close(); fn(b.dataset.pday); } });
+}
+async function shareOrDownload(fname, text, type){
+  const blob = new Blob([text], {type});
+  try { const file = new File([blob], fname, {type}); if (navigator.canShare && navigator.canShare({files:[file]})) { await navigator.share({files:[file], title:fname}); return; } } catch(e){ if (e && e.name === 'AbortError') return; }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = fname; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+}
+const isIOS = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+const isStandalone = () => navigator.standalone || matchMedia('(display-mode: standalone)').matches;
 
 /* ---------- render: recipes ---------- */
 function filtered(){
@@ -671,7 +972,7 @@ function filtered(){
   const sorters = {
     new:(a, b) => b.created - a.created,
     quick:(a, b) => totalMin(a) - totalMin(b),
-    cheap:(a, b) => recipeCost(a).per - recipeCost(b).per,
+    cheap:(a, b) => { const x = recipeCost(a), y = recipeCost(b); return (x.known ? x.per : 1e9) - (y.known ? y.per : 1e9); },
     often:(a, b) => b.logs.length - a.logs.length,
     stale:(a, b) => (last(a) || '0').localeCompare(last(b) || '0'),
   };
@@ -682,6 +983,8 @@ function vRecipes(){
   const sampleCount = S.recipes.filter(r => r.sample).length;
   return `
   ${MODE === 'local' ? `<div class="demo"><span>お試し中です。データはこの端末の中だけに保存されます。${sampleCount ? '<b>サンプル</b>のレシピは自由に消してOK。' : ''}</span>${window.UG_FIREBASE ? '<button class="btn primary sm" style="margin-left:auto;flex:none" data-act="towelcome">本番をはじめる</button>' : ''}</div>` : `<p class="hh num">${esc(S.name)}<span>${S.members.map(m => `<i style="background:${m.color}" title="${esc(m.name)}"></i>`).join('')}</span></p>`}
+  ${MODE === 'cloud' && !isStandalone() && !LS.get('ug-a2hs') ? `<div class="a2hs"><div><b>ホーム画面に追加すると、アプリみたいに使えます</b><span class="hint">${isIOS ? 'Safariの共有ボタン（□に↑）→「ホーム画面に追加」' : 'ブラウザのメニュー →「ホーム画面に追加」'}。追加したアイコンから開いたら、最初の1回だけ「参加コード」で入り直してください（設定で発行できます）。</span></div><button class="del" data-act="a2hsoff" aria-label="閉じる">${I.x}</button></div>` : ''}
+  ${(() => { const ws = S.recipes.filter(r => r.want); return ws.length ? `<section class="wantbar" aria-label="作りたいリスト"><div class="wt">作りたい <span class="hint num">${ws.length}品</span></div><div class="scroller">${ws.map(r => `<button class="wcard" data-open="${r.id}"><span class="wph ph">${thumb(r)}</span><span class="wn">${esc(r.name)}</span></button>`).join('')}</div></section>` : ''; })()}
   <div class="search">${I.search}<input id="q" type="search" placeholder="料理名・材料でさがす（例：卵、豚肉）" value="${esc(UI.q)}" autocomplete="off"></div>
   <div class="filters">
     <div class="frow"><span>種類</span><div class="scroller">
@@ -714,7 +1017,7 @@ function card(r){
     <div class="ph">${thumb(r)}<span class="tag" style="background:${catColor(r.cat)}">${esc(r.cat)}</span>${r.sample ? '<span class="sample">サンプル</span>' : ''}</div>
     <div class="body">
       <div class="nm">${esc(r.name)}</div>
-      <div class="meta num"><span>${I.clock}${totalMin(r)}分</span><span>1人分 約${yen10(c.per)}円</span></div>
+      <div class="meta num"><span>${I.clock}${totalMin(r)}分</span>${c.known ? `<span>1人分 約${yen10(c.per)}円</span>` : ''}</div>
       <div class="hearts">${S.members.map(m => `<span style="color:${r.hearts.includes(m.id) ? m.color : 'var(--line)'}" title="${esc(m.name)}">${I.heart}</span>`).join('')}${r.logs.length ? `<span class="hint" style="margin-left:4px">${r.logs.length}回作った</span>` : ''}</div>
     </div>
   </button>`;
@@ -737,75 +1040,99 @@ function openDetail(id){
         <span class="hint">♡は「また食べたい」の気持ち</span>
       </div>
       <div class="facts num">
-        <div><small>合計時間</small><b>${totalMin(r)}</b>分</div>
+        <div><small>合計時間</small>${totalMin(r) ? `<b>${totalMin(r)}</b>分` : '<b>—</b>'}</div>
         <div><small>何人分</small><b>${r.serv}</b>人</div>
-        <div><small>材料費の目安</small><b>${yen10(c.sum)}</b>円</div>
-        <div><small>1人分</small><b>${yen10(c.per)}</b>円</div>
+        <div><small>材料費${c.manual ? '' : 'の目安'}</small>${c.known ? `<b>${yen10(c.sum)}</b>円` : '<b>—</b>'}</div>
+        <div><small>1人分</small>${c.known ? `<b>${yen10(c.per)}</b>円` : '<b>—</b>'}</div>
       </div>
       <div class="actions">
         <button class="btn primary" data-act="request" data-id="${r.id}">今日これ食べたい！</button>
         <button class="btn olive" data-act="addvote" data-id="${r.id}">今日の候補に入れる</button>
       </div>
+      <button class="btn ghost" style="width:100%;margin-bottom:10px${r.want ? ';border-color:var(--mustard);color:var(--kraft)' : ''}" data-act="want" data-id="${r.id}">${r.want ? '★ 作りたいリストに入っています（タップで外す）' : '☆ 作りたいリストに入れる'}</button>
+      <div class="actions" style="margin-top:0"><button class="btn ghost" data-act="toweek" data-id="${r.id}">今週の献立に入れる</button><button class="btn ghost" data-act="sharerec" data-id="${r.id}">友達に送る</button></div>
+      ${/^https?:\/\//.test(r.src || '') ? `<a class="btn ghost" style="width:100%;margin-bottom:10px;text-decoration:none" href="${esc(r.src)}" target="_blank" rel="noopener">元のレシピを見る ↗</a>` : ''}
       <div class="meta" style="font-size:12.5px">
-        <span>下準備 ${r.prep || 0}分 / 調理 ${r.cook || 0}分</span><span>難しさ ${'●'.repeat(r.diff || 1)}${'○'.repeat(3 - (r.diff || 1))}</span>
-        ${r.keepF ? `<span>冷蔵 ${esc(r.keepF)}日</span>` : ''}${r.keepZ ? `<span>冷凍 ${esc(r.keepZ)}週</span>` : ''}
-        ${r.src ? `<span>出典：${/^https?:\/\//.test(r.src) ? `<a href="${esc(r.src)}" target="_blank" rel="noopener">リンク</a>` : esc(r.src)}</span>` : ''}
+        ${totalMin(r) ? `<span>下準備 ${r.prep || 0}分 / 調理 ${r.cook || 0}分</span>` : ''}<span>難しさ ${'●'.repeat(r.diff || 1)}${'○'.repeat(3 - (r.diff || 1))}</span>
+        ${r.keepF ? `<span>冷蔵 ${esc(r.keepF)}日</span>` : ''}${r.keepZ ? `<span>冷凍 ${esc(r.keepZ)}週</span>` : ''}${!r.keepF && !r.keepZ && (r.ings.length || r.steps.length) ? (() => { const p = predictShelf(r); return `<span>日持ちの目安：冷蔵 ${p.fridgeTxt}・${p.freezeTxt}（自動）</span>`; })() : ''}
+        ${r.src && !/^https?:\/\//.test(r.src) ? `<span>出典：${esc(r.src)}</span>` : ''}
       </div>
 
-      <h2 class="sec">材料 <small>${r.serv}人分・チェックで「家にある」</small></h2>
+      ${!r.ings.length && !r.steps.length ? `<div class="empty" style="padding:20px"><b>材料と作り方はまだありません</b>${r.src ? '元のレシピを見ながら作れます。' : ''}右上の「編集」からいつでも追加できます</div>` : ''}
+      ${r.ings.length ? `<h2 class="sec">材料 <small>${r.serv}人分・チェックで「家にある」</small></h2>
       <div class="panel"><ul class="ings">
         ${r.ings.map((i, k) => { const p = ingPrice(i); const have = UI.have[r.id + k];
           return `<li class="${have ? 'have' : ''}"><button class="box" role="checkbox" aria-checked="${!!have}" data-have="${k}" aria-label="${esc(i.n)}がある">${have ? I.check : ''}</button>
           <span class="nm2">${esc(i.n)}</span><span class="amt">${esc(i.a)}</span><span class="yen num ${p && p.est ? 'est' : ''}">${p ? yen(p.v) + '円' : '―'}</span></li>`; }).join('')}
       </ul>
-      <div class="costline num"><span>材料費の目安 <small>${c.unknown ? `（${c.unknown}品は値段不明）` : ''}</small></span><span>約${yen10(c.sum)}円</span></div>
-      <p class="hint" style="margin:6px 0 0">「約」がついた値段は自動の目安です。編集で実際の値段に直せます。水は0円で計算。</p>
-      </div>
+      <div class="costline num"><span>${c.manual ? '材料費（手入力）' : '材料費の目安'} <small>${!c.manual && c.unknown ? `（${c.unknown}品は値段不明）` : ''}</small></span><span>${c.known ? '約' + yen10(c.sum) + '円' : '—'}</span></div>
+      <p class="hint" style="margin:6px 0 0">「約」がついた値段は自動の目安です。編集で実際の値段や合計に直せます。</p>
+      </div>` : ''}
 
-      <h2 class="sec">作り方 <small>番号をタップで完了、時間をタップでタイマー</small></h2>
+      ${r.steps.length ? `<h2 class="sec">作り方 <small>番号をタップで完了、時間をタップでタイマー</small></h2>
+      <p class="hint" style="margin:-6px 0 8px">タイマー中は画面を開いたままにしてください。音が出ないときは音量を上げてください。</p>
       <ol class="steps">
         ${r.steps.map((s, k) => `<li class="${UI.done[r.id + k] ? 'done' : ''}"><button class="sn" data-done="${k}" aria-label="手順${k + 1}を完了">${UI.done[r.id + k] ? '✓' : k + 1}</button>
-          <div><div class="stx">${esc(s.t)}</div>
+          <div><div class="stx">${esc(s.t)}</div>${s.photo ? `<img class="stepimg" src="${esc(s.photo)}" alt="手順${k + 1}の様子">` : ''}
           ${(s.min || s.fire) ? `<div class="stools">${s.min ? `<button class="pill timer" data-timer="${k}" data-min="${s.min}">${I.clock}<span>${s.min}分</span></button>` : ''}${s.fire ? `<span class="pill fire-${esc(s.fire)}">火加減 ${esc(s.fire)}火</span>` : ''}</div>` : ''}
           </div></li>`).join('')}
-      </ol>
+      </ol>` : ''}
 
       ${r.tips ? `<h2 class="sec">コツ・ポイント</h2><div class="tips">${esc(r.tips)}</div>` : ''}
 
       <h2 class="sec">作った記録 <small>${r.logs.length}回</small></h2>
       <div class="panel">
-        ${r.logs.length ? `<ul class="log">${r.logs.slice().sort((a, b) => b.date.localeCompare(a.date)).map(l => `<li class="num"><span>${esc(l.date.slice(5).replace('-', '/'))}</span><span class="who-dot"><i style="background:${meColor(l.by)}"></i>${esc(meName(l.by))}</span><span><span class="stars">${stars(l.rate)}</span> ${esc(l.memo)}</span></li>`).join('')}</ul>` : '<p class="hint" style="margin:0">まだ記録がありません</p>'}
+        ${r.logs.length ? `<ul class="log">${r.logs.map((l, i) => ({l, i})).sort((a, b) => b.l.date.localeCompare(a.l.date)).map(({l, i}) => `<li class="num"><button class="ldate" data-logedit="${i}" aria-label="この記録を直す">${esc(l.date.slice(5).replace('-', '/'))} ✎</button><span class="who-dot"><i style="background:${meColor(l.by)}"></i>${esc(meName(l.by))}</span><span><span class="stars">${stars(l.rate)}</span> ${esc(l.memo)}</span><button class="del" data-logdel="${i}" aria-label="この記録を消す">${I.x}</button></li>`).join('')}</ul>` : '<p class="hint" style="margin:0">まだ記録がありません</p>'}
         <hr class="dash">
         <div class="f"><span class="lbl">作った人</span><div class="chips">${S.members.map(m => `<button class="chip" data-logby="${m.id}" aria-pressed="${(UI.logby || S.me) === m.id}"><i class="dot" style="background:${m.color}"></i>${esc(m.name)}</button>`).join('')}</div></div>
         <div class="f"><span class="lbl">おいしさ</span><div class="chips">${[1,2,3,4,5].map(n => `<button class="chip" data-lograte="${n}" aria-pressed="${(UI.lograte || 4) === n}">${'★'.repeat(n)}</button>`).join('')}</div></div>
-        <div class="f"><label for="logmemo">次はこうする（任意）</label><input class="inp" id="logmemo" placeholder="例：砂糖を少し減らす"></div>
+        <div class="f"><label for="logdate">作った日</label><input class="inp" type="date" id="logdate" value="${today()}" max="${today()}"></div>
+        <div class="f"><label for="logmemo">ひとこと・次はこうする（任意）</label><input class="inp" id="logmemo" placeholder="例：砂糖を少し減らす"></div>
         <button class="btn olive" style="margin-top:10px;width:100%" data-act="log" data-id="${r.id}">今日作った！を記録</button>
       </div>
     </div></div>`;
   try { navigator.wakeLock?.request('screen').then(w => UI.wake = w).catch(() => {}); } catch(e){}
 }
-function closeLayer(){ document.getElementById('layer').innerHTML = ''; UI.detail = null; UI.sheet = null; UI.logby = null; UI.lograte = null; try { UI.wake?.release(); } catch(e){} render(); }
+function redrawDetail(){
+  const y = document.querySelector('.sheet')?.scrollTop, memo = document.getElementById('logmemo')?.value, typing = document.activeElement?.id === 'logmemo';
+  openDetail(UI.detail); const sh = document.querySelector('.sheet'); if (sh && y) sh.scrollTop = y;
+  const m = document.getElementById('logmemo'); if (m && memo) m.value = memo; if (m && typing) m.focus();
+}
+function closeLayer(){ document.getElementById('layer').innerHTML = ''; UI.detail = null; UI.sheet = null; UI.logPhoto = null; UI.logby = null; UI.lograte = null; try { UI.wake?.release(); } catch(e){} render(); }
 
 /* timers */
 const timers = {};
 let audioCtx;
+let alarmIv = null, alarmStop = null;
+function unlockAudio(){
+  try { if (navigator.audioSession) navigator.audioSession.type = 'playback'; } catch(e){}
+  try { audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); audioCtx.resume?.(); const o = audioCtx.createOscillator(), g = audioCtx.createGain(); g.gain.value = 0.0001; o.connect(g); g.connect(audioCtx.destination); o.start(); o.stop(audioCtx.currentTime + 0.05); } catch(e){}
+}
 function beep(){
-  try { audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
-    [0, .35, .7].forEach(t => { const o = audioCtx.createOscillator(), g = audioCtx.createGain(); o.frequency.value = 880; o.connect(g); g.connect(audioCtx.destination); g.gain.setValueAtTime(.2, audioCtx.currentTime + t); g.gain.exponentialRampToValueAtTime(.001, audioCtx.currentTime + t + .3); o.start(audioCtx.currentTime + t); o.stop(audioCtx.currentTime + t + .3); });
+  try { audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); audioCtx.resume?.();
+    [[0, 988], [.18, 1319], [.45, 988], [.63, 1319]].forEach(([t, f]) => { const o = audioCtx.createOscillator(), g = audioCtx.createGain(); o.type = 'triangle'; o.frequency.value = f; o.connect(g); g.connect(audioCtx.destination); const at = audioCtx.currentTime + t; g.gain.setValueAtTime(0.0001, at); g.gain.exponentialRampToValueAtTime(0.6, at + 0.02); g.gain.exponentialRampToValueAtTime(0.0001, at + 0.16); o.start(at); o.stop(at + 0.17); });
   } catch(e){}
-  try { navigator.vibrate?.([200, 100, 200]); } catch(e){}
+  try { navigator.vibrate?.([300, 120, 300]); } catch(e){}
+}
+function stopAlarm(){ clearInterval(alarmIv); alarmIv = null; clearTimeout(alarmStop); document.querySelector('.alarm')?.remove(); }
+function alarm(label){
+  stopAlarm(); beep(); alarmIv = setInterval(beep, 1300); alarmStop = setTimeout(stopAlarm, 90000);
+  const d = document.createElement('div'); d.className = 'modal alarm'; d.setAttribute('role', 'alertdialog');
+  d.innerHTML = `<div class="card2" style="text-align:center"><h3>タイマーが終わりました</h3><p class="muted" style="margin:0 0 14px">${esc(label)}</p><button class="btn primary" style="width:100%" data-m="stop">止める</button></div>`;
+  d.addEventListener('click', stopAlarm); document.body.appendChild(d);
 }
 function toggleTimer(btn){
   const key = UI.detail + btn.dataset.timer;
   if (timers[key]) { clearInterval(timers[key].iv); delete timers[key]; btn.classList.remove('run'); btn.querySelector('span').textContent = btn.dataset.min + '分'; return; }
-  try { audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)(); audioCtx.resume?.(); } catch(e){}
+  unlockAudio();
+  const k = Number(btn.dataset.timer), label = `${(S && UI.detail ? byId(UI.detail)?.name : UI.sharedDoc?.recipe?.name) || ''}　手順${k + 1}（${btn.dataset.min}分）`;
   const end = Date.now() + Number(btn.dataset.min) * 60000;
   btn.classList.add('run');
   const tick = () => {
     const left = Math.max(0, end - Date.now()), m = Math.floor(left / 60000), s = Math.floor(left % 60000 / 1000);
     const live = document.querySelector(`[data-timer="${btn.dataset.timer}"]`);
     if (live) live.querySelector('span').textContent = `${m}:${String(s).padStart(2, '0')}`;
-    if (!left) { clearInterval(timers[key].iv); delete timers[key]; beep(); toast('タイマーが終わりました'); if (live) { live.classList.remove('run'); live.querySelector('span').textContent = btn.dataset.min + '分'; } }
+    if (!left) { clearInterval(timers[key].iv); delete timers[key]; alarm(label); if (live) { live.classList.remove('run'); live.querySelector('span').textContent = btn.dataset.min + '分'; } }
   };
   timers[key] = {iv:setInterval(tick, 500)}; tick();
 }
@@ -825,16 +1152,26 @@ function drawEditor(isEdit){
     <div class="sheet-in">
       ${isEdit ? '' : `<div class="panel" style="margin-top:14px">
         <div style="font-weight:700">貼り付けて自動入力</div>
-        <p class="hint" style="margin:2px 0 8px">レシピサイトやメモの文章をそのまま貼ると、料理名・材料・作り方に振り分けます。あとで直せます。</p>
-        <textarea class="inp" id="paste" placeholder="例：&#10;豚の生姜焼き（2人分）&#10;材料&#10;豚ロース 250g&#10;玉ねぎ 1/2個&#10;作り方&#10;1. 玉ねぎを薄切りにする&#10;2. 豚肉を焼いて10分煮からめる"></textarea>
+        <p class="hint" style="margin:2px 0 8px">レシピサイトやメモの文章をそのまま貼ると、料理名・材料・作り方に振り分けます。友達から届いたレシピのリンクを貼ると、そのまま読み込みます。</p>
+        <textarea class="inp" id="paste" aria-label="レシピの文章や、友達から届いたレシピのリンク" placeholder="例：&#10;豚の生姜焼き（2人分）&#10;材料&#10;豚ロース 250g&#10;玉ねぎ 1/2個&#10;作り方&#10;1. 玉ねぎを薄切りにする&#10;2. 豚肉を焼いて10分煮からめる"></textarea>
         <button class="btn olive sm" style="margin-top:8px" data-act="parse">振り分ける</button>
       </div>`}
-      <div class="f"><span class="lbl">写真</span>
-        <div class="photo-drop">${d.photo ? `<img src="${esc(d.photo)}" alt="">` : '<span>タップして写真を選ぶ</span>'}<input type="file" id="photo" accept="image/*" aria-label="写真を選ぶ"></div>
-        ${d.photo ? '<button class="btn ghost sm" data-act="rmphoto" style="align-self:flex-start;margin-top:4px">写真を外す</button>' : ''}
+      <div class="f"><span class="lbl">写真${d.photo ? '（一覧での見え方）' : ''}</span>
+        <div class="photo-drop">${d.photo ? `<img id="pv" src="${esc(d.photo)}" alt="" style="${imgStyle(d)}">` : '<span>タップして写真を選ぶ</span>'}<input type="file" id="photo" accept="image/*" aria-label="写真を選ぶ"></div>
+        <div class="row" style="margin-top:6px"><label class="btn ghost sm" for="photoCam">${I.cam}その場で撮る</label><input type="file" id="photoCam" accept="image/*" capture="environment" class="vh"><span class="hint">上の枠をタップするとアルバムから選べます</span></div>
+        ${d.photo ? `<div class="posc">
+          <label for="pz">大きさ</label><input type="range" id="pz" min="1" max="2.5" step="0.05" value="${d.pos?.z ?? 1}">
+          <label for="px">左右</label><input type="range" id="px" min="0" max="100" step="1" value="${d.pos?.x ?? 50}">
+          <label for="py">上下</label><input type="range" id="py" min="0" max="100" step="1" value="${d.pos?.y ?? 50}">
+        </div>
+        <div class="row"><button class="btn ghost sm" data-act="rmphoto">写真を外す</button><span class="hint">写真をタップすると選び直せます</span></div>` : ''}
       </div>
       <div class="f"><label for="e-name">料理名</label><input class="inp" id="e-name" data-k="name" value="${esc(d.name)}" placeholder="例：豚の生姜焼き"></div>
       <div class="f"><span class="lbl">種類</span><div class="chips">${CATS.map(c => `<button class="chip" data-ecat="${c.k}" aria-pressed="${d.cat === c.k}"><i class="dot" style="background:${c.c}"></i>${c.k}</button>`).join('')}</div></div>
+      <div class="f"><label for="e-src">レシピのURL・出典 <span class="hint">（URLだけ登録でもOK）</span></label><input class="inp" id="e-src" data-k="src" value="${esc(d.src)}" placeholder="https://... や「母のレシピ」など" inputmode="url"></div>
+      <label class="row" style="margin-top:10px;gap:8px;font-size:14px"><input type="checkbox" id="e-want" ${d.want ? 'checked' : ''}> 作りたいリストに入れる（まだ作っていないレシピ）</label>
+      <details class="more" ${UI.moreOpen || d.ings.some(i => i.n) || d.steps.some(x => x.t) ? 'open' : ''}>
+      <summary>材料・作り方も書く <span class="hint">（あとからでもOK）</span></summary>
       <div class="f2">
         <div class="f"><label for="e-serv">何人分</label><input class="inp num" id="e-serv" data-k="serv" type="number" inputmode="numeric" min="1" value="${esc(d.serv)}"></div>
         <div class="f"><label for="e-prep">下準備（分）</label><input class="inp num" id="e-prep" data-k="prep" type="number" inputmode="numeric" min="0" value="${esc(d.prep)}"></div>
@@ -845,40 +1182,68 @@ function drawEditor(isEdit){
         <div class="f"><label for="e-kf">冷蔵（日）</label><input class="inp num" id="e-kf" data-k="keepF" type="number" inputmode="numeric" value="${esc(d.keepF)}"></div>
         <div class="f"><label for="e-kz">冷凍（週）</label><input class="inp num" id="e-kz" data-k="keepZ" type="number" inputmode="numeric" value="${esc(d.keepZ)}"></div>
       </div>
+      <button class="btn ghost sm" style="margin-top:8px" data-act="shelf">日持ちを予測して入れる</button>
+      <div id="shelfnote"></div>
 
-      <h2 class="sec">材料 <small>値段は空欄なら自動で目安を入れます</small></h2>
+      <h2 class="sec">材料</h2>
+      <p class="hint" style="margin:-4px 0 6px">値段の欄は空欄でOK。<b style="color:var(--kraft)">茶色の数字</b>が自動の目安で、そのまま合計に入ります。「不明」の材料は、わかれば数字を入れてください。<b>入れた値段は覚えて、次から同じ材料に自動で使います。</b></p>
       <div class="irow hint" style="margin-top:0"><span>材料</span><span>分量</span><span>値段(円)</span><span></span></div>
       ${d.ings.map((i, k) => { const e = estPrice(i.n, i.a); return `<div class="irow">
         <input class="inp" id="i-n-${k}" data-ing="${k}" data-f="n" value="${esc(i.n)}" placeholder="鶏もも肉" aria-label="材料${k + 1}">
         <input class="inp" id="i-a-${k}" data-ing="${k}" data-f="a" value="${esc(i.a)}" placeholder="1枚" aria-label="分量${k + 1}">
-        <input class="inp num" id="i-p-${k}" data-ing="${k}" data-f="p" type="number" inputmode="numeric" value="${esc(i.p ?? '')}" placeholder="${e != null ? '約' + e : '?'}" aria-label="値段${k + 1}">
+        <input class="inp num" id="i-p-${k}" data-ing="${k}" data-f="p" type="number" inputmode="numeric" value="${esc(i.p ?? '')}" placeholder="${e != null ? '約' + e : '不明'}" aria-label="値段${k + 1}">
         <button class="del" data-delIng="${k}" aria-label="この材料を消す">${I.x}</button></div>`; }).join('')}
       <button class="btn ghost sm" style="margin-top:8px" data-act="adding">${I.plus}材料を追加</button>
+      <div class="panel" style="margin-top:10px">
+        <div class="row" style="justify-content:space-between"><span>材料費の目安</span><b class="num" id="costsum"></b></div>
+        <div class="f" style="margin-top:8px"><label for="e-total">合計を自分で入れる（任意・入れるとこちらを優先）</label><input class="inp num" id="e-total" data-k="total" type="number" inputmode="numeric" value="${esc(d.total ?? '')}" placeholder="例：800"></div>
+      </div>
 
       <h2 class="sec">作り方</h2>
+      <p class="hint" style="margin:-4px 0 0">「10分煮る」「中火で焼く」のように書くと、タイマーと火加減が自動で入ります。</p>
       ${d.steps.map((s, k) => `<div class="srow"><span class="sn" style="width:24px;height:24px;font-size:12px">${k + 1}</span>
         <textarea class="inp" id="s-t-${k}" data-step="${k}" data-f="t" rows="2" style="min-height:56px" placeholder="手順を書く">${esc(s.t)}</textarea>
         <button class="del" data-delStep="${k}" aria-label="この手順を消す">${I.x}</button>
         <div class="sub2"><input class="inp num" id="s-m-${k}" data-step="${k}" data-f="min" type="number" inputmode="numeric" value="${esc(s.min)}" placeholder="タイマー（分）" aria-label="手順${k + 1}の時間">
         <select class="inp" id="s-f-${k}" data-step="${k}" data-f="fire" aria-label="手順${k + 1}の火加減"><option value="">火加減なし</option>${['弱','中','強'].map(f => `<option ${s.fire === f ? 'selected' : ''}>${f}</option>`).join('')}</select></div>
+        <div class="sub3">${s.photo ? `<img class="sthumb" src="${esc(s.photo)}" alt=""><button class="btn ghost sm" data-sphotodel="${k}">写真を外す</button>` : ''}<label class="btn ghost sm" for="s-p-${k}">${I.cam}${s.photo ? '撮り直す' : '写真（このくらいまで）'}</label><input type="file" id="s-p-${k}" data-sphoto="${k}" accept="image/*" class="vh"></div>
       </div>`).join('')}
       <button class="btn ghost sm" style="margin-top:8px" data-act="addstep">${I.plus}手順を追加</button>
 
       <div class="f" style="margin-top:20px"><label for="e-tips">コツ・ポイント</label><textarea class="inp" id="e-tips" data-k="tips" placeholder="失敗しないポイント、アレンジなど">${esc(d.tips)}</textarea></div>
-      <div class="f"><label for="e-src">出典（本・URL・人）</label><input class="inp" id="e-src" data-k="src" value="${esc(d.src)}" placeholder="https://... や「母のレシピ」など"></div>
+      </details>
       <div class="row" style="margin-top:22px;justify-content:space-between">
         ${isEdit ? `<button class="btn ghost" style="color:var(--tomato)" data-act="delrecipe">このレシピを消す</button>` : '<span></span>'}
         <button class="btn primary" data-act="saverecipe">保存する</button>
       </div>
     </div></div>`;
+  updateCostSum();
+}
+function updateCostSum(){
+  const el = document.getElementById('costsum'); if (!el || !draft) return;
+  const c = recipeCost(draft);
+  el.textContent = c.known ? `約${yen10(c.sum)}円${!c.manual && c.unknown ? `（不明${c.unknown}品）` : ''}` : (draft.ings.some(i => i.n) ? '値段がわかる材料がありません' : '—');
 }
 function syncDraft(el){
   if (el.dataset.k) draft[el.dataset.k] = el.type === 'number' ? (el.value === '' ? '' : Number(el.value)) : el.value;
   if (el.dataset.ing != null) draft.ings[el.dataset.ing][el.dataset.f] = el.value;
-  if (el.dataset.step != null) draft.steps[el.dataset.step][el.dataset.f] = el.value;
+  if (el.dataset.step != null) {
+    const k = el.dataset.step, st = draft.steps[k], f = el.dataset.f;
+    st[f] = el.value;
+    if (f === 'min') st.autoMin = false;
+    if (f === 'fire') st.autoFire = false;
+    if (f === 't') {
+      const t = z2h(st.t), m = t.match(/(\d+(?:\.\d+)?)\s*(時間|分)/);
+      if (m && (st.min === '' || st.min == null || st.autoMin)) { st.min = m[2] === '時間' ? Math.round(Number(m[1]) * 60) : Number(m[1]); st.autoMin = true; const i = document.getElementById('s-m-' + k); if (i) i.value = st.min; }
+      if (!m && st.autoMin) { st.min = ''; st.autoMin = false; const i = document.getElementById('s-m-' + k); if (i) i.value = ''; }
+      const fire = /強火/.test(t) ? '強' : /中火/.test(t) ? '中' : /弱火|とろ火/.test(t) ? '弱' : '';
+      if (fire && (!st.fire || st.autoFire)) { st.fire = fire; st.autoFire = true; const sel = document.getElementById('s-f-' + k); if (sel) sel.value = fire; }
+    }
+  }
+  updateCostSum();
   if (el.dataset.ing != null && el.dataset.f !== 'p') {
     const k = el.dataset.ing, i = draft.ings[k], e = estPrice(i.n, i.a), p = document.getElementById('i-p-' + k);
-    if (p) p.placeholder = e != null ? '約' + e : '?';
+    if (p) p.placeholder = e != null ? '約' + e : '不明';
   }
 }
 function parsePaste(text){
@@ -919,6 +1284,7 @@ function vToday(){
   const top = items.length ? Math.max(...items.map(v => v.votes.length)) : 0;
   const randPool = CATS.map(c => c.k);
   return `
+  ${S.opts?.dinner === false ? '' : vDinner()}
   <h2 class="sec">リクエスト <small>「今日これ食べたい！」で届きます</small></h2>
   ${open.length ? open.map(q => { const r = byId(q.rid); if (!r) return ''; return `<div class="req">
       <button class="th ph" style="border:none;padding:0;position:relative" data-open="${r.id}" aria-label="${esc(r.name)}を開く">${thumb(r)}</button>
@@ -954,17 +1320,37 @@ function vToday(){
     ${UI.extraRand ? `<div class="rslot" style="margin-top:8px"><span class="cat" style="background:${catColor(UI.extraRand.cat)}">${esc(UI.extraRand.cat)}</span><span class="rname">${byId(UI.extraRand.id) ? `<button data-open="${UI.extraRand.id}">${esc(byId(UI.extraRand.id).name)}</button>` : ''}</span><button class="btn ghost sm" data-addvote="${UI.extraRand.id}">候補へ</button></div>` : ''}
   </div>
 
-  <h2 class="sec">買い物リスト <small>候補とランダム結果から作ります</small></h2>
+  ${vWeek()}
+  <h2 class="sec">買い物リスト</h2>
+  <div class="chips" style="margin-bottom:8px"><button class="chip" data-shopsrc="today" aria-pressed="${UI.shopSrc !== 'week'}">今日の候補から</button><button class="chip" data-shopsrc="week" aria-pressed="${UI.shopSrc === 'week'}">今週の献立から（まとめ買い）</button></div>
   ${vShop()}
   `;
 }
+const DIN = {yes:'いる', no:'いらない', late:'遅くなる'};
+const DTIMES = ['18:00','18:30','19:00','19:30','20:00','20:30','21:00','21:30','22:00','22:30','23:00','23:30','24:00'];
+function vDinner(){
+  const st = S.dinner?.st || {};
+  const cnt = S.members.filter(m => st[m.id] && st[m.id].s !== 'no').length;
+  return `<h2 class="sec">今日の夕ごはん <small>いる？いらない？</small></h2>
+  <div class="panel">
+    ${S.members.map(m => { const x = st[m.id], mine = m.id === S.me; return `<div class="drow"><span class="who-dot"><i style="background:${m.color}"></i>${esc(m.name)}</span>
+      ${mine ? `<div class="chips">${Object.keys(DIN).map(k => `<button class="chip din-${k}" data-din="${k}" aria-pressed="${x?.s === k}">${DIN[k]}</button>`).join('')}${x?.s === 'late' ? `<select class="inp sm" id="dintime" aria-label="何時ごろ">${DTIMES.map(t => `<option ${x.t === t ? 'selected' : ''}>${t}</option>`).join('')}</select>` : ''}</div>`
+      : `<span class="dstat ${x ? 'din-' + x.s : ''}">${x ? DIN[x.s] + (x.s === 'late' && x.t ? `（${x.t}ごろ）` : '') : 'まだ'}</span>`}</div>`; }).join('')}
+    <p class="hint" style="margin:6px 0 0">${Object.keys(st).length ? `今日の夕ごはんは <b class="num">${cnt}人分</b>` : '自分のところをタップして、家族に知らせよう'}</p>
+  </div>`;
+}
+function vWeek(){
+  return `<h2 class="sec">今週の献立 <small>＋で料理を入れる</small></h2>
+  <div class="panel">${weekDays().map(d => { const ids = (S.week?.[d.iso] || []).filter(byId); return `<div class="wrow"><span class="wday${d.today ? ' tdy' : ''}">${d.label}</span><div class="chips">${ids.map((id, j) => `<span class="chip wchip"><button data-open="${id}">${esc(byId(id).name)}</button><button class="x" data-wdel="${d.iso}|${j}" aria-label="外す">×</button></span>`).join('')}<button class="chip addc" data-wadd="${d.iso}" aria-label="${d.label}に料理を入れる">＋</button></div></div>`; }).join('')}</div>`;
+}
 function shopSource(){
+  if (UI.shopSrc === 'week') return [...new Set(Object.values(S.week || {}).flat())].map(byId).filter(Boolean);
   const ids = new Set([...S.vote.items.map(v => v.rid), ...UI.randCats.map(k => UI.rand[k]).filter(Boolean)]);
   return [...ids].map(byId).filter(Boolean);
 }
 function vShop(){
   const rs = shopSource();
-  if (!rs.length) return `<div class="empty" style="padding:22px"><b>まだ料理が決まっていません</b>候補に入れるか、ランダムで決めるとここにまとまります</div>`;
+  if (!rs.length) return UI.shopSrc === 'week' ? `<div class="empty" style="padding:22px"><b>今週の献立がまだありません</b>上の「今週の献立」の＋で料理を入れると、1週間分の買い物リストになります</div>` : `<div class="empty" style="padding:22px"><b>まだ料理が決まっていません</b>候補に入れるか、ランダムで決めるとここにまとまります</div>`;
   const have = new Set(S.fridge);
   const map = new Map();
   for (const r of rs) for (const i of r.ings) {
@@ -982,6 +1368,273 @@ function vShop(){
     ${all.length - need.length ? `<p class="hint" style="margin:6px 0 0">冷蔵庫にあるので除外：${all.filter(o => have.has(o.n)).map(o => esc(o.n)).join('、')}</p>` : ''}
     <button class="btn ghost sm" style="margin-top:10px" data-act="copyshop">${I.copy}LINE用にコピー</button>
   </div>`;
+}
+
+/* ---------- album ---------- */
+function albumItems(){
+  const items = (S.memories || []).map(m => Object.assign({}, m, {real:true}));
+  for (const r of S.recipes) for (const l of r.logs || []) if (!l.mid) items.push({id:'log:' + r.id + ':' + l.date + ':' + l.by, rid:r.id, name:r.name, date:l.date, by:l.by, rate:l.rate, memo:l.memo, photo:'', real:false});
+  return items.sort((a, b) => b.date.localeCompare(a.date) || (b.ts || 0) - (a.ts || 0));
+}
+function vAlbum(){
+  const items = albumItems(), months = {};
+  for (const it of items) (months[it.date.slice(0, 7)] = months[it.date.slice(0, 7)] || []).push(it);
+  return `<div class="row" style="justify-content:space-between;margin-top:18px"><h2 class="sec" style="margin:0">思い出アルバム</h2><button class="btn primary sm" data-act="memnew">${I.plus}思い出を追加</button></div>
+  ${items.length ? `<p class="hint num" style="margin:4px 0 0">これまでに <b>${items.length}回</b> のごはん・写真 <b>${items.filter(x => x.photo).length}枚</b></p>` : ''}
+  ${items.length ? Object.entries(months).map(([ym, list]) => `<h3 class="mh">${ym.slice(0, 4)}年${Number(ym.slice(5))}月 <small class="num">ごはん${list.length}回${list.filter(x => x.photo).length ? '・写真' + list.filter(x => x.photo).length + '枚' : ''}</small></h3>
+    <div class="agrid">${list.map(it => `<button class="acard${it.photo ? '' : ' nophoto'}" data-mem="${esc(it.id)}">${it.photo ? `<span class="aph"><img src="${esc(it.photo)}" alt=""></span>` : ''}<span class="ab"><b>${esc(it.name || 'ごはん')}</b><span class="hint num">${md(it.date)}・${esc(meName(it.by))} <span class="stars">${'★'.repeat(it.rate || 0)}</span></span>${it.memo ? `<span class="am">${esc(it.memo)}</span>` : ''}</span></button>`).join('')}</div>`).join('')
+  : `<div class="empty"><b>まだ思い出がありません</b>レシピの「今日作った！」で写真を付けると、ここに2人のごはんの記録がたまっていきます</div>`}`;
+}
+function openMemory(id){
+  const it = albumItems().find(x => x.id === id); if (!it) return;
+  sheetModal(`${it.photo ? `<img class="mbig" src="${esc(it.photo)}" alt="">` : ''}
+    <h3 style="margin-top:10px">${esc(it.name || 'ごはん')}</h3>
+    <p class="hint num" style="margin:0">${it.date.replace(/-/g, '/')}・${esc(meName(it.by))}が作った <span class="stars">${'★'.repeat(it.rate || 0)}</span></p>
+    ${it.memo ? `<p style="margin:8px 0 0;white-space:pre-wrap">${esc(it.memo)}</p>` : ''}
+    <div class="row" style="justify-content:space-between;margin-top:14px">${it.real ? `<button class="btn ghost sm" style="color:var(--tomato)" data-mdel="1">この思い出を消す</button>` : '<span></span>'}<span class="row">${it.rid && byId(it.rid) ? `<button class="btn ghost sm" data-mopen="1">レシピを見る</button>` : ''}<button class="btn primary sm" data-m="no">閉じる</button></span></div>`,
+    (e, close) => {
+      if (e.target.closest('[data-mopen]')) { close(); openDetail(it.rid); }
+      if (e.target.closest('[data-mdel]')) { close(); ask('この思い出を消しますか？', '写真とひとことが消えます。元に戻せません。', '消す', () => { S.memories = S.memories.filter(x => x.id !== it.id); const r = byId(it.rid); if (r) r.logs = r.logs.filter(l => l.mid !== it.id); commit(); toast('消しました'); }); }
+    });
+}
+let mdraft = null;
+function openMemEditor(){ mdraft = {id:uid(), rid:'', name:'', date:today(), by:S.me, rate:4, memo:'', photo:''}; drawMemEditor(); }
+function drawMemEditor(){
+  const d = mdraft; UI.sheet = 'mem';
+  document.getElementById('layer').innerHTML = `<div class="sheet" role="dialog" aria-label="思い出を追加">
+    <div class="sheet-bar"><button class="iconbtn" data-act="close" aria-label="閉じる">${I.back}</button><span class="t">思い出を追加</span><button class="btn primary sm" data-act="memsave">保存</button></div>
+    <div class="sheet-in">
+      <div class="f"><span class="lbl">写真</span>${d.photo ? `<img class="mbig" src="${esc(d.photo)}" alt="">` : ''}
+        <div class="row"><label class="btn ghost sm" for="mcam">${I.cam}撮る</label><input type="file" id="mcam" accept="image/*" capture="environment" class="vh"><label class="btn ghost sm" for="mpic">アルバムから</label><input type="file" id="mpic" accept="image/*" class="vh"></div></div>
+      <div class="f"><label for="m-date">日付</label><input class="inp" type="date" id="m-date" value="${esc(d.date)}" max="${today()}"></div>
+      <div class="f"><label for="m-rid">レシピ（任意）</label><select class="inp" id="m-rid"><option value="">選ばない</option>${S.recipes.map(r => `<option value="${r.id}" ${d.rid === r.id ? 'selected' : ''}>${esc(r.name)}</option>`).join('')}</select></div>
+      <div class="f"><label for="m-name">料理名（レシピにないとき）</label><input class="inp" id="m-name" value="${esc(d.name)}" placeholder="例：誕生日の手巻き寿司"></div>
+      <div class="f"><span class="lbl">作った人</span><div class="chips">${S.members.map(m => `<button class="chip" data-mby="${m.id}" aria-pressed="${d.by === m.id}"><i class="dot" style="background:${m.color}"></i>${esc(m.name)}</button>`).join('')}</div></div>
+      <div class="f"><span class="lbl">おいしさ</span><div class="chips">${[1,2,3,4,5].map(n => `<button class="chip" data-mrate="${n}" aria-pressed="${d.rate === n}">${'★'.repeat(n)}</button>`).join('')}</div></div>
+      <div class="f"><label for="m-memo">ひとこと</label><textarea class="inp" id="m-memo" placeholder="例：はじめて一緒に作った日">${esc(d.memo)}</textarea></div>
+      <button class="btn primary" style="width:100%;margin-top:16px" data-act="memsave">保存する</button>
+    </div></div>`;
+}
+function readMemForm(){ if (!mdraft) return; const g = id => document.getElementById(id); if (g('m-date')) { mdraft.date = g('m-date').value || today(); mdraft.rid = g('m-rid').value; mdraft.name = g('m-name').value.trim(); mdraft.memo = g('m-memo').value.trim(); } }
+
+/* ---------- backup ---------- */
+function exportJSON(){
+  const data = {app:'uchigohan', v:1, exportedAt:new Date().toISOString(), name:S.name, recipes:S.recipes, memories:S.memories || [], prices:S.prices || {}};
+  shareOrDownload(`uchigohan-${today()}.json`, JSON.stringify(data), 'application/json');
+}
+function exportText(){
+  let t = `うちごはん帖「${S.name}」 ${today()} 書き出し\n`;
+  for (const r of S.recipes) {
+    const c = recipeCost(r);
+    t += `\n■ ${r.name}（${r.cat}・${r.serv}人分${totalMin(r) ? '・' + totalMin(r) + '分' : ''}${c.known ? '・材料費 約' + yen10(c.sum) + '円' : ''}）\n`;
+    if (r.src) t += `出典：${r.src}\n`;
+    if (r.ings.length) { t += '【材料】\n'; for (const i of r.ings) t += `・${i.n}　${i.a || ''}\n`; }
+    if (r.steps.length) { t += '【作り方】\n'; r.steps.forEach((x, k) => { t += `${k + 1}. ${x.t}${x.min ? `（${x.min}分）` : ''}${x.fire ? `［${x.fire}火］` : ''}\n`; }); }
+    if (r.tips) t += `【コツ】\n${r.tips}\n`;
+  }
+  shareOrDownload(`uchigohan-${today()}.txt`, t, 'text/plain');
+}
+function importFile(file){
+  const fr = new FileReader();
+  fr.onload = () => {
+    let data; try { data = JSON.parse(fr.result); } catch(e){ toast('このファイルは読み込めませんでした'); return; }
+    if (data.app !== 'uchigohan' || !Array.isArray(data.recipes)) { toast('うちごはん帖で書き出したファイルを選んでください'); return; }
+    const mem = Array.isArray(data.memories) ? data.memories : [];
+    ask('ファイルから追加しますか？', `レシピ${data.recipes.length}品と思い出${mem.length}件を、このレシピ帳に追加します。今あるデータは消えません。`, '追加する', () => {
+      const idmap = {}, have = new Set(S.recipes.map(r => r.id));
+      for (const r of data.recipes) { const nr = clean(r); if (have.has(nr.id)) { idmap[nr.id] = uid(); nr.id = idmap[r.id]; } nr.sample = false; nr.hearts = []; delete nr.share; S.recipes.push(nr); }
+      S.memories = S.memories || []; const hm = new Set(S.memories.map(x => x.id));
+      for (const m of mem) { const nm = clean(m); if (hm.has(nm.id)) nm.id = uid(); if (idmap[nm.rid]) nm.rid = idmap[nm.rid]; S.memories.push(nm); }
+      S.prices = Object.assign({}, data.prices || {}, S.prices || {});
+      commit(); closeLayer(); toast(`レシピ${data.recipes.length}品を追加しました`);
+    });
+  };
+  fr.readAsText(file);
+}
+
+/* ---------- party share (friends join temporarily) ---------- */
+function partyPublic(){
+  const P = S.party, c = partyCalc();
+  return {title:P.title || `${S.name}の宅飲み`, people:P.people, kids:c.kids, rate:c.rate,
+    dishes:c.rows.map(x => ({id:x.r.id, name:x.r.name, cat:x.r.cat, sv:x.sv, known:x.known, cost:Math.round(x.cost)})),
+    extras:P.extras.filter(e => e.n || e.p).map(e => ({n:e.n || 'その他', p:Number(e.p) || 0})),
+    total:Math.round(c.total), per:Math.round(c.per), kidPer:Math.round(c.kidPer)};
+}
+function ensurePartySub(){
+  const pid = S?.party?.share?.pid;
+  if (MODE !== 'cloud' || !pid || UI.plSub === pid) return;
+  UI.plSub = pid;
+  unsub.push(fb.db.collection('parties').doc(pid).onSnapshot(doc => { UI.pl = doc.exists ? doc.data() : null; if (UI.tab === 'party' && !UI.sheet) render(); }, e => console.error(e)));
+}
+function partyVotes(rid){
+  const pl = UI.pl; if (!pl) return [];
+  return Object.entries(pl.votes || {}).filter(([u, ids]) => (ids || []).includes(rid)).map(([u]) => pl.guests?.[u]?.name || 'だれか');
+}
+function vShareParty(){
+  if (MODE !== 'cloud') return `<div class="panel" style="margin-top:10px"><b>友達と相談する</b><p class="hint" style="margin:4px 0 0">本番のレシピ帳で使えます。友達はリンクを開くだけで、メニューに「いいね」したり参加の返事ができます。</p></div>`;
+  ensurePartySub();
+  const P = S.party, link = `${SITE}?party=${P.share?.pid}`;
+  if (!P.share) return `<div class="panel" style="margin-top:10px"><b>友達と相談する</b>
+    <p class="hint" style="margin:4px 0 8px">レシピ帳に入れなくても、リンクを開くだけでメニューに「いいね」したり、参加・不参加やひとことを返せます。友達にはレシピ帳の中身は見えません（見えるのは料理名と金額だけ）。</p>
+    <div class="f" style="margin-top:0"><label for="ptitle">会の名前</label><input class="inp" id="ptitle" value="${esc(P.title || '')}" placeholder="${esc(S.name)}の宅飲み" maxlength="30"></div>
+    <button class="btn olive" style="width:100%;margin-top:10px" data-act="mkparty">相談リンクを作る</button></div>`;
+  const pl = UI.pl, gs = Object.values(pl?.guests || {}), going = gs.filter(g => g.going === true), notes = gs.filter(g => g.note);
+  return `<div class="panel" style="margin-top:10px"><div class="row" style="justify-content:space-between"><b>相談リンク</b><span class="hint">2週間有効</span></div>
+    <input class="inp num" id="plink" readonly value="${esc(link)}" style="margin-top:6px">
+    <div class="row" style="margin-top:8px"><button class="btn olive sm" data-act="copyplink">${I.copy}誘う文をコピー</button>${navigator.share ? '<button class="btn ghost sm" data-act="shareplink">LINEなどで送る</button>' : ''}</div>
+    <hr class="dash">
+    <div><b>参加する</b> <span class="num">${going.length}人</span>${going.length ? `：${going.map(g => esc(g.name)).join('、')}` : ''}</div>
+    ${gs.filter(g => g.going === false).length ? `<div class="hint">パス：${gs.filter(g => g.going === false).map(g => esc(g.name)).join('、')}</div>` : ''}
+    ${notes.length ? `<ul class="settle">${notes.map(g => `<li><b>${esc(g.name)}</b>：${esc(g.note)}</li>`).join('')}</ul>` : ''}
+    <div class="row" style="margin-top:10px">${going.length ? `<button class="btn ghost sm" data-act="plapply" data-n="${going.length + S.members.length}">大人の人数を ${going.length + S.members.length}人 にする</button>` : ''}<button class="btn ghost sm" style="color:var(--tomato)" data-act="plend">相談を終わる</button></div>
+    <p class="hint" style="margin:6px 0 0">メニューや人数を変えると、友達の画面にも自動で反映されます。料理ごとの「いいね」は下のメニューに出ます。</p></div>`;
+}
+let G = null;
+async function showGuest(pid){
+  showLoading('宅飲みの相談ページをひらいています…');
+  try {
+    const u = await signIn();
+    G = {pid, uid:u.uid, name:LS.get('ug-guestname') || '', data:null};
+    const ref = fb.db.collection('parties').doc(pid);
+    unsub.push(ref.onSnapshot(doc => {
+      if (!doc.exists || (doc.data().exp || 0) < Date.now()) { history.replaceState(null, '', SITE); showWelcome('この相談ページは終了しました。'); return; }
+      const focusId = document.activeElement?.id, val = focusId ? document.activeElement.value : null;
+      G.data = doc.data(); drawGuest();
+      if (focusId) { const el = document.getElementById(focusId); if (el) { el.value = val; el.focus(); } }
+    }, e => { console.error(e); history.replaceState(null, '', SITE); showWelcome('この相談ページはひらけませんでした。期限が切れているかもしれません。'); }));
+  } catch(e){ console.error(e); showWelcome('通信できませんでした。電波のいい場所でひらき直してください。'); }
+}
+function drawGuest(){
+  const d = G.data, me = d.guests?.[G.uid] || {}, myV = d.votes?.[G.uid] || [];
+  const nameOf = u => d.guests?.[u]?.name || 'だれか';
+  const gs = Object.values(d.guests || {}), going = gs.filter(g => g.going === true);
+  document.getElementById('view').innerHTML = `<section class="welcome" style="gap:12px">
+    <p class="w-eyebrow">宅飲みの相談</p>
+    <h2 class="w-title" style="font-size:26px">${esc(d.title)}</h2>
+    <div class="panel">
+      <div class="f" style="margin-top:0"><label for="gname">あなたの名前</label><input class="inp" id="gname" value="${esc(me.name || G.name)}" placeholder="例：さき" maxlength="20"></div>
+      <div class="chips" style="margin-top:10px"><button class="chip din-yes" data-gogo="1" aria-pressed="${me.going === true}">参加する</button><button class="chip din-no" data-gogo="0" aria-pressed="${me.going === false}">今回はパス</button></div>
+      <div class="f"><label for="gnote">食べたいもの・持っていくもの（任意）</label><input class="inp" id="gnote" value="${esc(me.note || '')}" placeholder="例：唐揚げ食べたい／ビール持っていく" maxlength="60"></div>
+      <button class="btn olive sm" style="margin-top:10px" data-act="gsave">送る</button>
+    </div>
+    <h2 class="sec" style="margin:6px 0 0">メニュー案 <small>いいと思う料理に「いいね」</small></h2>
+    <div class="panel">${d.dishes.length ? d.dishes.map(x => { const vs = Object.entries(d.votes || {}).filter(([u, ids]) => (ids || []).includes(x.id)); return `<div class="vote"><div style="min-width:0"><b>${esc(x.name)}</b><div class="hint num">${x.sv}人前${x.known ? `・約${yen10(x.cost)}円` : ''}</div>${vs.length ? `<div class="hint">${vs.map(([u]) => esc(nameOf(u))).join('・')}</div>` : ''}</div><button class="vbtn" data-gv="${esc(x.id)}" aria-pressed="${myV.includes(x.id)}">いいね${vs.length ? ' ' + vs.length : ''}</button></div>`; }).join('') : '<p class="hint" style="margin:0">メニューはまだ決まっていません</p>'}</div>
+    <div class="split" style="margin-top:0"><div class="hint">今の予算の目安（${d.kids ? '大人' : ''}1人あたり）</div><div class="big num">約${yen10(d.per)}円</div>
+      ${d.kids ? `<div class="hint num">子ども1人あたり：${d.rate ? '約' + yen10(d.kidPer) + '円' : '無料'}</div>` : ''}
+      <table class="ptable num" style="margin-top:6px"><tbody>${d.dishes.map(x => `<tr><td>${esc(x.name)}（${x.sv}人前）</td><td>${x.known ? '約' + yen10(x.cost) + '円' : '—'}</td></tr>`).join('')}${(d.extras || []).map(e => `<tr><td>${esc(e.n)}</td><td>${yen(e.p)}円</td></tr>`).join('')}<tr class="sum"><td>合計（大人${d.people}人${d.kids ? `・子ども${d.kids}人` : ''}）</td><td>約${yen10(d.total)}円</td></tr></tbody></table>
+      <p class="hint" style="margin:8px 0 0">幹事がメニューや人数を変えると、ここも自動で更新されます。</p></div>
+    ${going.length ? `<div class="panel"><b>参加する人</b>（${going.length}人）：${going.map(g => esc(g.name)).join('、')}</div>` : ''}
+    <p class="hint" style="text-align:center">うちごはん帖で作成しました<br><a href="${SITE}">ふたり・家族のレシピ帳をつくる（無料）</a></p>
+  </section>`;
+}
+async function guestWrite(patch){
+  const name = (document.getElementById('gname')?.value || '').trim();
+  if (!name) { toast('先に名前を入れてね'); document.getElementById('gname')?.focus(); return false; }
+  G.name = name; LS.set('ug-guestname', name);
+  const cur = G.data.guests?.[G.uid] || {};
+  const g = Object.assign({going:cur.going ?? null, note:cur.note || ''}, patch.guest || {}, {name});
+  const upd = {['guests.' + G.uid]:g};
+  if (patch.votes) upd['votes.' + G.uid] = patch.votes;
+  try { await fb.db.collection('parties').doc(G.pid).update(upd); return true; } catch(e){ console.error(e); toast('送れませんでした。もう一度ためしてください'); return false; }
+}
+
+/* ---------- share one recipe ---------- */
+function shareSnap(r){
+  const o = {};
+  for (const k of ['name','cat','serv','prep','cook','diff','keepF','keepZ','src','photo','pos','tips','total']) if (r[k] !== undefined && r[k] !== null) o[k] = r[k];
+  o.ings = (r.ings || []).map(i => ({n:i.n || '', a:i.a || '', p:i.p ?? ''}));
+  o.steps = (r.steps || []).map(x => Object.assign({t:x.t || '', min:x.min || '', fire:x.fire || ''}, x.photo ? {photo:x.photo} : {}));
+  return clean(o);
+}
+async function openShare(r){
+  if (MODE !== 'cloud') { toast('友達に送る機能は、本番のレシピ帳で使えます'); return; }
+  try {
+    let sid = r.share?.sid, exp = r.share?.exp || 0;
+    if (!sid || exp < Date.now()) {
+      sid = randId(16); exp = Date.now() + 30 * 86400000;
+      await fb.db.collection('shares').doc(sid).set({hid:HID, rid:r.id, exp, created:Date.now(), from:meName(S.me), book:S.name, recipe:shareSnap(r)});
+      r.share = {sid, exp}; base.s[sid] = JSON.stringify(shareSnap(r)); save();
+    } else if (exp - Date.now() < 7 * 86400000) {
+      exp = Date.now() + 30 * 86400000; await fb.db.collection('shares').doc(sid).update({exp}); r.share = {sid, exp}; save();
+    }
+    const link = `${SITE}?r=${sid}`, until = md(isoOf(new Date(exp)));
+    sheetModal(`<h3>「${esc(r.name)}」を友達に送る</h3>
+      <p class="hint" style="margin:0 0 8px">リンクを開くと、写真・材料・作り方がカードで見られます（ログイン不要）。うちごはん帖を使っている友達は、自分のレシピ帳に追加できます。</p>
+      <input class="inp num" id="slink" readonly value="${esc(link)}">
+      <div class="row" style="margin-top:8px"><button class="btn olive sm" data-sc="1">${I.copy}送る文をコピー</button>${navigator.share ? '<button class="btn ghost sm" data-ss="1">LINEなどで送る</button>' : ''}</div>
+      <p class="hint" style="margin:8px 0 0">${until}まで見られます。レシピを編集すると、リンク先も自動で最新になります。</p>
+      <div class="row" style="justify-content:space-between;margin-top:14px"><button class="btn ghost sm" style="color:var(--tomato)" data-sstop="1">送るのをやめる</button><button class="btn primary sm" data-m="no">閉じる</button></div>`,
+      async (e, close) => {
+        const text = `「${r.name}」のレシピを送るね🍳\n${link}`;
+        if (e.target.closest('[data-sc]')) copy(text, document.getElementById('slink'));
+        if (e.target.closest('[data-ss]')) { try { await navigator.share({title:r.name, text:`「${r.name}」のレシピを送るね`, url:link}); } catch(err){} }
+        if (e.target.closest('[data-sstop]')) { close(); ask('送るのをやめますか？', 'このリンクが開けなくなります。友達がすでに自分のレシピ帳に追加した分は消えません。', 'やめる', () => {
+          fb.db.collection('shares').doc(sid).delete().catch(err => console.error(err)); delete base.s[sid]; r.share = null; commit(); toast('リンクを止めました'); }); }
+      });
+  } catch(e){ console.error(e); toast('リンクを作れませんでした。もう一度ためしてください'); }
+}
+async function showSharedRecipe(sid){
+  showLoading('レシピをひらいています…');
+  try {
+    await signIn();
+    const snap = await fb.db.collection('shares').doc(sid).get();
+    if (!snap.exists || (snap.data().exp || 0) < Date.now()) throw new Error('gone');
+    UI.sharedDoc = snap.data(); drawShared(UI.sharedDoc);
+  } catch(e){ console.error(e); history.replaceState(null, '', SITE); showWelcome('このレシピのリンクは見つからないか、期限が切れています。送ってくれた人に、もう一度送ってもらってください。'); }
+}
+function drawShared(d){
+  const r = Object.assign({ings:[], steps:[], cat:'主菜', serv:2, name:'レシピ'}, d.recipe), c = recipeCost(r);
+  const shelf = !r.keepF && !r.keepZ && (r.ings.length || r.steps.length) ? predictShelf(r) : null;
+  const hasBook = !!LS.get('ug-hid');
+  document.getElementById('view').innerHTML = `<section class="rcard">
+    <p class="w-eyebrow" style="margin-top:18px">${esc(d.from || 'だれか')}さんから届いたレシピ</p>
+    <div class="ph hero" style="margin-top:8px">${thumb(r, true)}<span class="tag" style="background:${catColor(r.cat)}">${esc(r.cat)}</span></div>
+    <h2 class="dname">${esc(r.name)}</h2>
+    <div class="facts num">
+      <div><small>合計時間</small>${totalMin(r) ? `<b>${totalMin(r)}</b>分` : '<b>—</b>'}</div>
+      <div><small>何人分</small><b>${esc(r.serv)}</b>人</div>
+      <div><small>材料費の目安</small>${c.known ? `<b>${yen10(c.sum)}</b>円` : '<b>—</b>'}</div>
+      <div><small>1人分</small>${c.known ? `<b>${yen10(c.per)}</b>円` : '<b>—</b>'}</div>
+    </div>
+    ${/^https?:\/\//.test(r.src || '') ? `<a class="btn ghost" style="width:100%;margin-bottom:10px;text-decoration:none" href="${esc(r.src)}" target="_blank" rel="noopener">元のレシピを見る ↗</a>` : ''}
+    ${r.ings.length ? `<h2 class="sec">材料 <small>${esc(r.serv)}人分</small></h2><div class="panel"><ul class="ings">${r.ings.map(i => { const p = ingPrice(i); return `<li style="grid-template-columns:minmax(0,1fr) auto auto"><span>${esc(i.n)}</span><span class="amt">${esc(i.a)}</span><span class="yen num ${p && p.est ? 'est' : ''}">${p ? yen(p.v) + '円' : ''}</span></li>`; }).join('')}</ul></div>` : ''}
+    ${r.steps.length ? `<h2 class="sec">作り方</h2><ol class="steps">${r.steps.map((x, k) => `<li><span class="sn">${k + 1}</span><div><div class="stx">${esc(x.t)}</div>${x.photo ? `<img class="stepimg" src="${esc(x.photo)}" alt="手順${k + 1}の様子">` : ''}${(x.min || x.fire) ? `<div class="stools">${x.min ? `<button class="pill timer" data-timer="${k}" data-min="${esc(x.min)}">${I.clock}<span>${esc(x.min)}分</span></button>` : ''}${x.fire ? `<span class="pill fire-${esc(x.fire)}">火加減 ${esc(x.fire)}火</span>` : ''}</div>` : ''}</div></li>`).join('')}</ol>` : ''}
+    ${r.tips ? `<h2 class="sec">コツ・ポイント</h2><div class="tips">${esc(r.tips)}</div>` : ''}
+    ${r.keepF || r.keepZ ? `<p class="hint" style="margin-top:12px">日持ち：${r.keepF ? '冷蔵' + esc(r.keepF) + '日' : ''}${r.keepF && r.keepZ ? '・' : ''}${r.keepZ ? '冷凍' + esc(r.keepZ) + '週' : ''}</p>` : shelf ? `<p class="hint" style="margin-top:12px">日持ちの目安：冷蔵 ${shelf.fridgeTxt}・${shelf.freezeTxt}（自動）</p>` : ''}
+    <div class="panel" style="margin-top:18px">${hasBook ? `<button class="btn primary" style="width:100%" data-act="addshared">自分のレシピ帳に追加</button><p class="hint" style="margin:6px 0 0">「作りたいリスト」にも入ります。</p>`
+      : `<b>うちごはん帖で、このレシピを保存しませんか？</b><p class="hint" style="margin:4px 0 10px">ふたり・家族で使える無料のレシピ帳です。登録はいりません。</p><a class="btn primary" style="width:100%;text-decoration:none" href="${SITE}">無料でレシピ帳をつくる</a><p class="hint" style="margin:8px 0 0">つくったあと、もう一度このリンクを開くと「自分のレシピ帳に追加」が押せます。</p>`}
+      <p class="hint" style="margin:8px 0 0">ホーム画面のアプリで使っている場合は、このページのリンクをコピーして、アプリの「レシピを追加」→「貼り付けて自動入力」に貼ってください。</p></div>
+    <p class="hint" style="text-align:center;margin-top:16px">うちごはん帖 ・ <a href="${SITE}">ふたり・家族のレシピ帳</a></p>
+  </section>`;
+}
+async function addSharedToBook(btn){
+  const d = UI.sharedDoc, hid = LS.get('ug-hid'); if (!d || !hid) return;
+  btn.disabled = true;
+  try {
+    const r = Object.assign({ings:[], steps:[]}, clean(d.recipe), {id:uid(), hearts:[], logs:[], created:Date.now(), sample:false, want:true});
+    delete r.share;
+    await fb.db.collection('households').doc(hid).collection('recipes').doc(r.id).set(r);
+    LS.set('ug-toast', `「${r.name}」をレシピ帳に追加しました（作りたいリストにも入れました）`);
+    location.href = SITE;
+  } catch(e){ console.error(e); btn.disabled = false; toast('追加できませんでした。アプリの「貼り付けて自動入力」にリンクを貼る方法を試してください'); }
+}
+
+/* ---------- join code ---------- */
+async function makeCode(){
+  for (let t = 0; t < 5; t++) {
+    const code = randId(6).toUpperCase();
+    try { await fb.db.collection('codes').doc(code).set({hid:HID, exp:Date.now() + 86400000}); return code; } catch(e){ if (t === 4) throw e; }
+  }
+}
+async function useCode(code){
+  code = (code || '').trim().toUpperCase().replace(/[^A-Z0-9]/g, '');
+  if (code.length !== 6) { toast('6文字のコードを入れてください'); return; }
+  try {
+    await signIn();
+    const snap = await fb.db.collection('codes').doc(code).get();
+    if (!snap.exists || snap.data().exp < Date.now()) throw new Error('none');
+    showJoin(snap.data().hid);
+  } catch(e){ console.error(e); toast('コードが見つからないか、期限が切れています'); }
 }
 
 /* ---------- fridge ---------- */
@@ -1023,62 +1676,74 @@ function vFridge(){
 }
 
 /* ---------- party ---------- */
+const kidsOf = P => Number(P.kids) || 0, rateOf = P => P.kidRate ?? 0.5;
 function partyCalc(){
-  const P = S.party;
-  const rows = P.rids.map(byId).filter(Boolean).map(r => { const c = recipeCost(r); const scale = P.people / (r.serv || 1); return {r, scale, cost:c.sum * scale}; });
+  const P = S.party, kids = kidsOf(P), rate = rateOf(P);
+  const eaters = P.people + kids * 0.5;
+  const auto = Math.max(1, Math.round(eaters));
+  const rows = P.rids.map(byId).filter(Boolean).map(r => { const c = recipeCost(r); const fixed = Number(P.sv?.[r.id]) || 0; const sv = fixed || auto; return {r, sv, fixed:!!fixed, known:c.known, cost:c.known ? c.per * sv : 0}; });
   const food = rows.reduce((a, x) => a + x.cost, 0);
   const extra = P.extras.reduce((a, e) => a + (Number(e.p) || 0), 0);
-  const total = food + extra;
-  return {rows, food, extra, total, per: P.people ? total / P.people : 0};
+  const total = food + extra, units = P.people + kids * rate;
+  const per = units ? total / units : 0;
+  return {rows, food, extra, total, per, kidPer:per * rate, kids, rate};
 }
-function settle(payers, people){
+const rateLabel = r => r === 0 ? '無料' : r === 1 ? '大人と同じ' : '半額';
+function settle(payers, people, kids = 0, rate = 0.5){
   const list = payers.filter(p => p.name || Number(p.amt) > 0).map((p, i) => ({name:p.name || `立て替え${i + 1}`, amt:Number(p.amt) || 0}));
   const paid = list.reduce((a, p) => a + p.amt, 0);
   if (!paid) return null;
   people = Math.max(people, list.length);
-  const share = paid / people, others = people - list.length;
+  const units = people + kids * rate, share = paid / units, kidShare = share * rate, others = people - list.length;
   const credit = list.map(p => ({name:p.name, bal:p.amt - share})).filter(p => p.bal > 0.5);
   const debt = list.map(p => ({name:p.name, bal:share - p.amt})).filter(p => p.bal > 0.5);
-  for (let i = 0; i < others; i++) debt.push({name:null, bal:share});
+  for (let i = 0; i < others; i++) debt.push({name:null, kind:'a', bal:share});
+  if (kidShare > 0.5) for (let i = 0; i < kids; i++) debt.push({name:null, kind:'k', bal:kidShare});
   const lines = []; let ci = 0;
   for (const d of debt) {
     while (d.bal > 0.5 && ci < credit.length) {
       const c = credit[ci], x = Math.min(c.bal, d.bal);
-      lines.push({from:d.name, to:c.name, amt:x});
+      lines.push({from:d.name, kind:d.kind, to:c.name, amt:x});
       c.bal -= x; d.bal -= x; if (c.bal <= 0.5) ci++;
     }
   }
-  const anon = {}, named = [];
-  for (const l of lines) { if (l.from) named.push(l); else anon[l.to] = (anon[l.to] || 0) + l.amt; }
-  return {paid, share, named, anon, others, people};
+  const anon = {}, anonK = {}, named = [];
+  for (const l of lines) { if (l.from) named.push(l); else if (l.kind === 'k') anonK[l.to] = (anonK[l.to] || 0) + l.amt; else anon[l.to] = (anon[l.to] || 0) + l.amt; }
+  return {paid, share, kidShare, named, anon, anonK, others, people, kids};
 }
 function vParty(){
   const P = S.party, c = partyCalc();
   const avail = S.recipes.filter(r => !P.rids.includes(r.id));
-  const st = settle(P.payers, P.people);
+  const st = settle(P.payers, P.people, c.kids, c.rate);
   return `
   <div class="demo" style="margin-top:14px"><span>買い物の前に<b>予算の目安</b>、買ったあとは<b>レシートの金額で精算</b>。内訳ごと共有すれば、割り勘でもめません。</span></div>
+  ${vShareParty()}
 
   <h2 class="sec">① 人数とメニュー</h2>
   <div class="panel">
-    <div class="row" style="justify-content:space-between"><span style="font-weight:700">参加人数</span>
-      <span class="stepper"><button data-ppl="-1" aria-label="1人減らす">−</button><span class="num">${P.people}人</span><button data-ppl="1" aria-label="1人増やす">＋</button></span></div>
+    <div class="row" style="justify-content:space-between"><span style="font-weight:700">大人</span>
+      <span class="stepper"><button data-ppl="-1" aria-label="大人を1人減らす">−</button><span class="num">${P.people}人</span><button data-ppl="1" aria-label="大人を1人増やす">＋</button></span></div>
+    <div class="row" style="justify-content:space-between;margin-top:8px"><span style="font-weight:700">子ども</span>
+      <span class="stepper"><button data-kid="-1" aria-label="子どもを1人減らす">−</button><span class="num">${c.kids}人</span><button data-kid="1" aria-label="子どもを1人増やす">＋</button></span></div>
+    ${c.kids ? `<div class="row" style="margin-top:8px"><span class="hint">子どもの負担</span>${[0, 0.5, 1].map(v => `<button class="chip" data-krate="${v}" aria-pressed="${c.rate === v}">${rateLabel(v)}</button>`).join('')}</div>
+    <p class="hint" style="margin:4px 0 0">料理の量は、子ども1人を大人の半分として計算しています。</p>` : ''}
     <hr class="dash">
-    ${c.rows.length ? `<table class="ptable num"><tbody>${c.rows.map(x => `<tr><td>${esc(x.r.name)}<div class="hint">${x.r.serv}人分レシピ×${(Math.round(x.scale * 10) / 10)}倍</div></td><td>約${yen10(x.cost)}円 <button class="del" style="display:inline-grid;vertical-align:middle" data-prm="${x.r.id}" aria-label="外す">${I.x}</button></td></tr>`).join('')}</tbody></table>` : '<p class="hint" style="margin:0">作る料理を下から選んでください</p>'}
+    ${c.rows.length ? `<p class="hint" style="margin:0 0 6px">料理ごとに何人前作るか変えられます（例：おつまみは2人前だけ）</p><table class="ptable num"><tbody>${c.rows.map(x => `<tr><td>${esc(x.r.name)}<div class="row" style="gap:6px;margin-top:4px"><span class="stepper sm"><button data-psv="${x.r.id}" data-dd="-1" aria-label="1人前減らす">−</button><span class="num">${x.sv}人前</span><button data-psv="${x.r.id}" data-dd="1" aria-label="1人前増やす">＋</button></span>${x.fixed ? `<button class="chip" data-psvauto="${x.r.id}">人数に合わせる</button>` : '<span class="hint">人数に合わせて自動</span>'}</div>${x.known ? '' : '<div class="hint">材料費が未登録のため0円で計算</div>'}</td><td>${(() => { const v = partyVotes(x.r.id); return v.length ? `<div class="pvote">いいね ${v.length}<span class="hint">${v.map(esc).join('・')}</span></div>` : ''; })()}${x.known ? '約' + yen10(x.cost) + '円' : '—'} <button class="del" style="display:inline-grid;vertical-align:middle" data-prm="${x.r.id}" aria-label="外す">${I.x}</button></td></tr>`).join('')}</tbody></table>` : '<p class="hint" style="margin:0">作る料理を下から選んでください</p>'}
     <div class="f"><label for="padd">料理を追加</label>
-      <select class="inp" id="padd"><option value="">選ぶ…</option>${CATS.map(cat => { const rs = avail.filter(r => r.cat === cat.k); return rs.length ? `<optgroup label="${cat.k}">${rs.map(r => `<option value="${r.id}">${esc(r.name)}（${r.serv}人分 約${yen10(recipeCost(r).sum)}円）</option>`).join('')}</optgroup>` : ''; }).join('')}</select></div>
+      <select class="inp" id="padd"><option value="">選ぶ…</option>${CATS.map(cat => { const rs = avail.filter(r => r.cat === cat.k); return rs.length ? `<optgroup label="${cat.k}">${rs.map(r => `<option value="${r.id}">${esc(r.name)}（${recipeCost(r).known ? `${r.serv}人分 約${yen10(recipeCost(r).sum)}円` : '値段未登録'}）</option>`).join('')}</optgroup>` : ''; }).join('')}</select></div>
     <div class="f"><span class="lbl">料理以外（お酒・お菓子・氷など）</span>
       ${P.extras.map((e, k) => `<div class="prow"><input class="inp" id="ex-n-${k}" data-ex="${k}" data-f="n" value="${esc(e.n)}" aria-label="項目名"><input class="inp num" id="ex-p-${k}" data-ex="${k}" data-f="p" type="number" inputmode="numeric" value="${esc(e.p)}" aria-label="金額"><button class="del" data-exdel="${k}" aria-label="消す">${I.x}</button></div>`).join('')}
       <button class="btn ghost sm" style="margin-top:6px;align-self:flex-start" data-act="exadd">${I.plus}項目を追加</button></div>
   </div>
 
   <div class="split">
-    <div class="hint">予算の目安（1人あたり）</div>
+    <div class="hint">予算の目安（${c.kids ? '大人' : ''}1人あたり）</div>
     <div class="big num">約${yen10(c.per)}円</div>
+    ${c.kids ? `<div class="hint num">子ども1人あたり：${c.rate ? '約' + yen10(c.kidPer) + '円' : '無料'}</div>` : ''}
     <table class="ptable num" style="margin-top:6px"><tbody>
       <tr><td>料理の材料費</td><td>約${yen10(c.food)}円</td></tr>
       <tr><td>料理以外</td><td>${yen(c.extra)}円</td></tr>
-      <tr class="sum"><td>合計（${P.people}人）</td><td>約${yen10(c.total)}円</td></tr>
+      <tr class="sum"><td>合計（大人${P.people}人${c.kids ? `・子ども${c.kids}人` : ''}）</td><td>約${yen10(c.total)}円</td></tr>
     </tbody></table>
     <p class="hint" style="margin:8px 0 0">材料費は全国的なスーパー価格をもとにした概算です。地域やお店で変わります。</p>
   </div>
@@ -1088,11 +1753,13 @@ function vParty(){
     ${P.payers.map((p, k) => `<div class="prow"><input class="inp" id="py-n-${k}" data-py="${k}" data-f="name" value="${esc(p.name)}" placeholder="名前" aria-label="立て替えた人"><input class="inp num" id="py-a-${k}" data-py="${k}" data-f="amt" type="number" inputmode="numeric" value="${esc(p.amt)}" placeholder="金額" aria-label="立て替えた金額"><button class="del" data-pydel="${k}" aria-label="消す">${I.x}</button></div>`).join('')}
     <button class="btn ghost sm" style="margin-top:8px" data-act="pyadd">${I.plus}立て替えた人を追加</button>
     ${st ? `<hr class="dash">
-      <div class="row" style="justify-content:space-between;align-items:baseline"><span>実際の合計 <b class="num">${yen(st.paid)}円</b> ÷ ${st.people}人</span><span class="big num" style="font-size:26px">${yen(Math.ceil(st.share))}円<small style="font-size:13px">/人</small></span></div>
+      <div class="row" style="justify-content:space-between;align-items:baseline"><span>実際の合計 <b class="num">${yen(st.paid)}円</b></span><span class="big num" style="font-size:26px">${yen(Math.ceil(st.share))}円<small style="font-size:13px">/${st.kids ? '大人' : '人'}</small></span></div>
+      ${st.kids ? `<p class="hint num" style="margin:0">子ども1人あたり ${st.kidShare ? yen(Math.ceil(st.kidShare)) + '円' : '無料'}（${rateLabel(c.rate)}）</p>` : ''}
       <ul class="settle">
-        ${Object.entries(st.anon).map(([to, a]) => `<li>立て替えていない人 → <b>${esc(to)}</b> に <b class="num">${yen(Math.ceil(a / st.others))}円</b>ずつ</li>`).join('')}
+        ${Object.entries(st.anon).map(([to, a]) => `<li>立て替えていない${st.kids ? '大人' : '人'} → <b>${esc(to)}</b> に <b class="num">${yen(Math.ceil(a / st.others))}円</b>ずつ</li>`).join('')}
+        ${Object.entries(st.anonK).map(([to, a]) => `<li>子ども1人分 → <b>${esc(to)}</b> に <b class="num">${yen(Math.ceil(a / st.kids))}円</b>ずつ（保護者が払う）</li>`).join('')}
         ${st.named.map(l => `<li><b>${esc(l.from)}</b> → <b>${esc(l.to)}</b> に <b class="num">${yen(Math.ceil(l.amt))}円</b></li>`).join('')}
-        ${!st.named.length && !Object.keys(st.anon).length ? '<li>精算は不要です</li>' : ''}
+        ${!st.named.length && !Object.keys(st.anon).length && !Object.keys(st.anonK).length ? '<li>精算は不要です</li>' : ''}
       </ul>` : ''}
   </div>
 
@@ -1104,14 +1771,15 @@ function vParty(){
   </div>`;
 }
 function partyText(){
-  const P = S.party, c = partyCalc(), st = settle(P.payers, P.people);
-  let t = `【宅飲みの予算】${P.people}人\n`;
-  for (const x of c.rows) t += `・${x.r.name}：約${yen10(x.cost)}円\n`;
+  const P = S.party, c = partyCalc(), st = settle(P.payers, P.people, c.kids, c.rate);
+  let t = `【宅飲みの予算】大人${P.people}人${c.kids ? `・子ども${c.kids}人（${rateLabel(c.rate)}）` : ''}\n`;
+  for (const x of c.rows) t += `・${x.r.name}（${x.sv}人前）：${x.known ? '約' + yen10(x.cost) + '円' : '材料費未登録'}\n`;
   for (const e of P.extras) if (e.n || e.p) t += `・${e.n || 'その他'}：${yen(Number(e.p) || 0)}円\n`;
-  t += `合計 約${yen10(c.total)}円 → 1人 約${yen10(c.per)}円\n`;
+  t += `合計 約${yen10(c.total)}円 → ${c.kids ? '大人' : ''}1人 約${yen10(c.per)}円${c.kids ? `／子ども1人 ${c.rate ? '約' + yen10(c.kidPer) + '円' : '無料'}` : ''}\n`;
   if (st) {
-    t += `\n【精算】実費 ${yen(st.paid)}円 → 1人 ${yen(Math.ceil(st.share))}円\n`;
-    for (const [to, a] of Object.entries(st.anon)) t += `・立て替えていない人は ${to} に ${yen(Math.ceil(a / st.others))}円\n`;
+    t += `\n【精算】実費 ${yen(st.paid)}円 → ${st.kids ? '大人' : ''}1人 ${yen(Math.ceil(st.share))}円${st.kids ? `／子ども1人 ${st.kidShare ? yen(Math.ceil(st.kidShare)) + '円' : '無料'}` : ''}\n`;
+    for (const [to, a] of Object.entries(st.anon)) t += `・立て替えていない${st.kids ? '大人' : '人'}は ${to} に ${yen(Math.ceil(a / st.others))}円\n`;
+    for (const [to, a] of Object.entries(st.anonK)) t += `・子ども1人分は ${to} に ${yen(Math.ceil(a / st.kids))}円\n`;
     for (const l of st.named) t += `・${l.from} → ${l.to}：${yen(Math.ceil(l.amt))}円\n`;
   }
   t += `\n（うちごはん帖で計算 ${SITE}）`;
@@ -1136,14 +1804,32 @@ function openSettings(){
         <p class="hint" style="margin:0 0 6px">このリンクを開いた人は、このレシピ帳に参加できます。家族やパートナーにだけ送ってください。</p>
         <input class="inp num" id="invite" readonly value="${esc(link)}">
         <div class="row" style="margin-top:8px"><button class="btn olive sm" data-act="invite">${I.copy}招待文をコピー</button>${navigator.share ? '<button class="btn ghost sm" data-act="share">LINEなどで送る</button>' : ''}</div>
+        <hr class="dash">
+        <div class="row" style="justify-content:space-between"><span><b>参加コード</b> <span class="hint">24時間有効</span></span><button class="btn ghost sm" data-act="mkcode">${UI.code ? '新しく発行' : '発行する'}</button></div>
+        ${UI.code ? `<div class="jcode num">${UI.code}</div>` : ''}
+        <p class="hint" style="margin:6px 0 0">リンクを送りにくいときや、ホーム画面に追加したアプリで入り直すときに使います。トップ画面の「参加コードで入る」に入力します。</p>
       </div>
       <h2 class="sec">レシピ帳の名前</h2>
       <div class="panel"><input class="inp" id="hhname" data-hhname="1" value="${esc(S.name)}" maxlength="30" aria-label="レシピ帳の名前"></div>` : ''}
+      <h2 class="sec">表示する機能</h2>
+      <div class="panel">
+        <label class="row" style="gap:10px;font-size:14px;flex-wrap:nowrap"><input type="checkbox" id="opt-dinner" ${S.opts?.dinner === false ? '' : 'checked'}> 今日の夕ごはん（いる？いらない？）を表示する</label>
+        <p class="hint" style="margin:6px 0 0">一緒に住んでいないときなど、いらなければオフにできます。メンバー全員の画面で切りかわります。</p>
+      </div>
+      <h2 class="sec">バックアップ</h2>
+      <div class="panel">
+        <div class="row"><button class="btn olive sm" data-act="export">ファイルに書き出す</button><button class="btn ghost sm" data-act="exporttxt">読みやすい形で書き出す</button><label class="btn ghost sm" for="importf">ファイルから読み込む</label><input type="file" id="importf" accept=".json,application/json" class="vh"></div>
+        <p class="hint" style="margin:8px 0 0">「ファイルに書き出す」で保存したファイルは、あとで「読み込む」で戻せます。機種変更やもしものときの控えにどうぞ。</p>
+      </div>
       <h2 class="sec">データ</h2>
       <div class="panel row">
         <button class="btn ghost sm" data-act="delsamples">サンプルのレシピを消す</button>
         ${MODE === 'cloud' ? `<button class="btn ghost sm" data-act="leave">この端末でログアウト</button>
-        <button class="btn ghost sm" style="color:var(--tomato)" data-act="deletehh">レシピ帳をまるごと削除</button>` : `<button class="btn ghost sm" style="color:var(--tomato)" data-act="reset">最初の状態に戻す</button>`}
+        <button class="btn ghost sm" data-act="forkhh">自分用にコピーして独立する</button>
+        ${fb?.auth.currentUser?.uid === S._owner ? `<button class="btn ghost sm" style="color:var(--tomato)" data-act="deletehh">レシピ帳をまるごと削除</button>` : ''}
+      </div>
+      <p class="hint" style="margin:8px 0 0">「自分用にコピー」は、今のレシピ帳を残したまま、レシピをすべて自分だけのレシピ帳にコピーします。${fb?.auth.currentUser?.uid === S._owner ? 'まるごと削除すると、メンバー全員のデータが消えます。' : 'まるごと削除は、レシピ帳を作った人だけができます。'}</p>
+      <div style="display:none">` : `<button class="btn ghost sm" style="color:var(--tomato)" data-act="reset">最初の状態に戻す</button>`}
       </div>
       <p class="hint" style="margin-top:16px"><a href="terms.html">利用規約・プライバシーポリシー</a></p>
     </div></div>`;
@@ -1162,6 +1848,14 @@ function askText(title, ph, okLabel, fn){
   d.addEventListener('click', e => { const b = e.target.closest('[data-m]'); if (e.target === d || b) { const v = d.querySelector('#asktext').value; d.remove(); if (b?.dataset.m === 'ok') fn(v.trim()); } });
   document.body.appendChild(d); d.querySelector('#asktext').focus();
 }
+function confirmName(fn){
+  const d = document.createElement('div'); d.className = 'modal';
+  d.innerHTML = `<div class="card2" role="alertdialog"><h3>本当に削除しますか？</h3><p class="muted" style="margin:0 0 10px">メンバー全員のレシピ・写真・記録がすべて消えて、元に戻せません。相手の分を残したいときは、先に相手に「自分用にコピーして独立する」をしてもらってください。</p><label class="hint" for="cn">確認のため、レシピ帳の名前「${esc(S.name)}」を入力してください</label><input class="inp" id="cn" autocomplete="off" style="margin-top:4px"><div class="row" style="justify-content:flex-end;margin-top:12px"><button class="btn ghost" data-m="no">やめる</button><button class="btn primary" data-m="ok" disabled>削除する</button></div></div>`;
+  const ok = d.querySelector('[data-m="ok"]'), inp = d.querySelector('#cn');
+  inp.addEventListener('input', () => { ok.disabled = inp.value.trim() !== S.name.trim(); });
+  d.addEventListener('click', e => { const b = e.target.closest('[data-m]'); if (e.target === d || b?.dataset.m === 'no') d.remove(); if (b?.dataset.m === 'ok' && !ok.disabled) { d.remove(); fn(); } });
+  document.body.appendChild(d); inp.focus();
+}
 let toastT;
 function toast(msg){
   document.querySelector('.toast')?.remove();
@@ -1174,11 +1868,11 @@ async function copy(text, el){
 }
 
 /* ---------- photo ---------- */
-function compress(file){
+function compress(file, maxSide){
   return new Promise((res, rej) => {
     const fr = new FileReader();
     fr.onload = () => { const img = new Image(); img.onload = () => {
-      const max = 720, k = Math.min(1, max / Math.max(img.width, img.height));
+      const max = maxSide || 720, k = Math.min(1, max / Math.max(img.width, img.height));
       const cv = document.createElement('canvas'); cv.width = Math.round(img.width * k); cv.height = Math.round(img.height * k);
       cv.getContext('2d').drawImage(img, 0, 0, cv.width, cv.height); res(cv.toDataURL('image/jpeg', .72));
     }; img.onerror = rej; img.src = fr.result; };
@@ -1233,8 +1927,8 @@ document.addEventListener('click', async e => {
   if (d.lograte) { UI.lograte = Number(d.lograte); reDetail(); return; }
   if (d.ecat) { draft.cat = d.ecat; t.parentElement.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === t)); return; }
   if (d.ediff) { draft.diff = Number(d.ediff); t.parentElement.querySelectorAll('.chip').forEach(c => c.setAttribute('aria-pressed', c === t)); return; }
-  if (d.delIng != null || d.deling != null) { draft.ings.splice(Number(d.deling ?? d.delIng), 1); drawEditor(!!byId(draft.id)); return; }
-  if (d.delStep != null || d.delstep != null) { draft.steps.splice(Number(d.delstep ?? d.delStep), 1); drawEditor(!!byId(draft.id)); return; }
+  if (d.delIng != null || d.deling != null) { draft.ings.splice(Number(d.deling ?? d.delIng), 1); UI.moreOpen = true; drawEditor(!!byId(draft.id)); UI.moreOpen = false; return; }
+  if (d.delStep != null || d.delstep != null) { draft.steps.splice(Number(d.delstep ?? d.delStep), 1); UI.moreOpen = true; drawEditor(!!byId(draft.id)); UI.moreOpen = false; return; }
   if (d.reqok) { const q = S.requests.find(x => x.id === d.reqok); q.done = true; const r = byId(q.rid); if (r && !S.vote.items.some(v => v.rid === r.id)) S.vote.items.push({rid:r.id, votes:[S.me, q.from]}); commit(); toast(`「${r ? r.name : ''}」を作ることにしました`); return; }
   if (d.reqdel) { S.requests = S.requests.filter(x => x.id !== d.reqdel); commit(); return; }
   if (d.vote) { const v = S.vote.items.find(x => x.rid === d.vote); v.votes = v.votes.includes(S.me) ? v.votes.filter(x => x !== S.me) : [...v.votes, S.me]; commit(); return; }
@@ -1245,11 +1939,27 @@ document.addEventListener('click', async e => {
   if (d.shop) { S.shop[d.shop] = !S.shop[d.shop]; commit(); return; }
   if (d.fr) { S.fridge = S.fridge.includes(d.fr) ? S.fridge.filter(x => x !== d.fr) : [...S.fridge, d.fr]; commit(); return; }
   if (d.ppl) { S.party.people = Math.max(1, Math.min(30, S.party.people + Number(d.ppl))); commit(); return; }
-  if (d.prm) { S.party.rids = S.party.rids.filter(x => x !== d.prm); commit(); return; }
+  if (d.kid) { S.party.kids = Math.max(0, Math.min(20, kidsOf(S.party) + Number(d.kid))); if (S.party.kidRate == null) S.party.kidRate = 0.5; commit(); return; }
+  if (d.krate != null) { S.party.kidRate = Number(d.krate); commit(); return; }
+  if (d.prm) { S.party.rids = S.party.rids.filter(x => x !== d.prm); if (S.party.sv) delete S.party.sv[d.prm]; commit(); return; }
   if (d.exdel != null) { S.party.extras.splice(Number(d.exdel), 1); commit(); return; }
   if (d.pydel != null) { S.party.payers.splice(Number(d.pydel), 1); commit(); return; }
   if (d.memdel != null) { const m = S.members[d.memdel]; S.members.splice(Number(d.memdel), 1); if (S.me === m.id) S.me = S.members[0].id; save(); openSettings(); render(); return; }
 
+  if (d.gv) { const cur = G.data.votes?.[G.uid] || [], ids = cur.includes(d.gv) ? cur.filter(x => x !== d.gv) : [...cur, d.gv]; guestWrite({votes:ids}); return; }
+  if (d.gogo) { guestWrite({guest:{going:d.gogo === '1', note:(document.getElementById('gnote')?.value || '').trim()}}); return; }
+  if (d.din) { S.dinner = S.dinner || {date:today(), st:{}}; const cur = S.dinner.st[S.me]; if (cur?.s === d.din) delete S.dinner.st[S.me]; else S.dinner.st[S.me] = {s:d.din, t:d.din === 'late' ? (cur?.t || '20:00') : ''}; commit(); return; }
+  if (d.wadd) { const iso = d.wadd; pickRecipe('献立に入れる料理', id => { S.week = S.week || {}; (S.week[iso] = S.week[iso] || []).push(id); commit(); }); return; }
+  if (d.wdel) { const [iso, j] = d.wdel.split('|'); S.week[iso].splice(Number(j), 1); if (!S.week[iso].length) delete S.week[iso]; commit(); return; }
+  if (d.shopsrc) { UI.shopSrc = d.shopsrc; render(); return; }
+  if (d.mem) { openMemory(d.mem); return; }
+  if (d.mby) { readMemForm(); mdraft.by = d.mby; drawMemEditor(); return; }
+  if (d.mrate) { readMemForm(); mdraft.rate = Number(d.mrate); drawMemEditor(); return; }
+  if (d.sphotodel != null) { delete draft.steps[Number(d.sphotodel)].photo; const y = document.querySelector('.sheet')?.scrollTop; UI.moreOpen = true; drawEditor(!!byId(draft.id)); UI.moreOpen = false; const sh = document.querySelector('.sheet'); if (sh && y) sh.scrollTop = y; return; }
+  if (d.logedit != null) { editLog(Number(d.logedit)); return; }
+  if (d.logdel != null) { const r = byId(UI.detail), i = Number(d.logdel); ask('この記録を消しますか？', `${r.logs[i]?.date || ''} の記録を消します。`, '消す', () => { const mid = r.logs[i]?.mid; if (mid) S.memories = (S.memories || []).filter(x => x.id !== mid); r.logs.splice(i, 1); reDetail(); toast('記録を消しました'); }); return; }
+  if (d.psv) { const P = S.party; P.sv = P.sv || {}; const auto = Math.max(1, Math.round(P.people + kidsOf(P) * 0.5)); const cur = Number(P.sv[d.psv]) || auto; P.sv[d.psv] = Math.max(1, Math.min(50, cur + Number(d.dd))); commit(); return; }
+  if (d.psvauto) { if (S.party.sv) delete S.party.sv[d.psvauto]; commit(); return; }
   if (d.joinas) { t.disabled = true; joinHousehold(UI.joinHid, d.joinas).catch(err => { console.error(err); t.disabled = false; toast('参加できませんでした。もう一度ためしてください'); }); return; }
   switch (d.act) {
     case 'towelcome': showWelcome(); break;
@@ -1271,27 +1981,41 @@ document.addEventListener('click', async e => {
     case 'invite': copy(`「${S.name}」に招待するね！うちごはん帖で一緒にレシピを管理しよう。\nここから参加してね → ${SITE}?join=${HID}`, document.getElementById('invite')); break;
     case 'share': try { await navigator.share({title:'うちごはん帖', text:`「${S.name}」に招待するね！ここから参加してね`, url:`${SITE}?join=${HID}`}); } catch(e){} break;
     case 'leave': ask('この端末でログアウトしますか？', 'レシピ帳は消えません。もう一度入るときは招待リンクが必要です。先に招待リンクをコピーしておいてください。', 'ログアウト', leaveDevice); break;
-    case 'deletehh': ask('レシピ帳をまるごと削除しますか？', '家族全員のレシピ・写真・記録がすべて消えます。元に戻せません。', '削除する', () => deleteHousehold().catch(err => { console.error(err); toast('削除できませんでした'); })); break;
+    case 'deletehh': confirmName(() => deleteHousehold().catch(err => { console.error(err); toast('削除できませんでした'); })); break;
     case 'close': closeLayer(); break;
     case 'new': openEditor(); break;
     case 'edit': openEditor(d.id); break;
     case 'canceledit': openDetail(draft.id); break;
-    case 'adding': draft.ings.push({n:'',a:'',p:''}); drawEditor(!!byId(draft.id)); document.getElementById('i-n-' + (draft.ings.length - 1))?.focus(); break;
-    case 'addstep': draft.steps.push({t:'',min:'',fire:''}); drawEditor(!!byId(draft.id)); document.getElementById('s-t-' + (draft.steps.length - 1))?.focus(); break;
-    case 'rmphoto': draft.photo = ''; drawEditor(!!byId(draft.id)); break;
+    case 'adding': draft.ings.push({n:'',a:'',p:''}); UI.moreOpen = true; drawEditor(!!byId(draft.id)); UI.moreOpen = false; document.getElementById('i-n-' + (draft.ings.length - 1))?.focus(); break;
+    case 'addstep': draft.steps.push({t:'',min:'',fire:''}); UI.moreOpen = true; drawEditor(!!byId(draft.id)); UI.moreOpen = false; document.getElementById('s-t-' + (draft.steps.length - 1))?.focus(); break;
+    case 'rmphoto': draft.photo = ''; draft.pos = null; UI.moreOpen = !!document.querySelector('details.more[open]'); drawEditor(!!byId(draft.id)); UI.moreOpen = false; break;
     case 'parse': {
-      const p = parsePaste(document.getElementById('paste').value);
+      const raw = document.getElementById('paste').value, sm = raw.match(/[?&]r=([a-z0-9]{8,})/);
+      if (sm) {
+        if (!fb) { toast('共有されたレシピは本番のレシピ帳で読み込めます'); break; }
+        signIn().then(() => fb.db.collection('shares').doc(sm[1]).get()).then(snap => {
+          if (!snap.exists || (snap.data().exp || 0) < Date.now()) { toast('このリンクは見つからないか、期限が切れています'); return; }
+          const sr = clean(snap.data().recipe); Object.assign(draft, sr, {id:draft.id, want:true}); delete draft.share;
+          draft.ings = draft.ings || []; draft.steps = draft.steps || [];
+          UI.moreOpen = true; drawEditor(false); UI.moreOpen = false; toast(`「${sr.name}」を読み込みました。保存すると追加されます`);
+        }).catch(e => { console.error(e); toast('読み込めませんでした'); });
+        break;
+      }
+      const p = parsePaste(raw);
       if (!p.ings.length && !p.steps.length) { toast('「材料」「作り方」の見出しがある文章だと振り分けられます'); break; }
       if (p.name) draft.name = p.name; if (p.serv) draft.serv = p.serv;
       if (p.ings.length) draft.ings = p.ings; if (p.steps.length) draft.steps = p.steps;
       if (p.tips.length) draft.tips = p.tips.join('\n');
       const cook = p.steps.reduce((a, s) => a + (Number(s.min) || 0), 0); if (cook && !draft.cook) draft.cook = cook;
-      drawEditor(false); toast(`材料${p.ings.length}品・手順${p.steps.length}つを入れました`); break;
+      UI.moreOpen = true; drawEditor(false); UI.moreOpen = false; toast(`材料${p.ings.length}品・手順${p.steps.length}つを入れました`); break;
     }
     case 'saverecipe': {
       if (!draft.name.trim()) { toast('料理名を入れてください'); document.getElementById('e-name')?.focus(); break; }
-      draft.ings = draft.ings.filter(i => i.n.trim()); draft.steps = draft.steps.filter(s => s.t.trim());
+      draft.ings = draft.ings.filter(i => i.n.trim()); draft.steps = draft.steps.filter(s => s.t.trim() || s.photo);
+      if (JSON.stringify(draft).length > 950000) { toast('写真が多くて保存できません。手順の写真をいくつか外してください'); break; }
       draft.serv = Number(draft.serv) || 1; draft.sample = false;
+      S.prices = S.prices || {};
+      for (const i of draft.ings) { const pv = Number(i.p); if (i.p === '' || i.p == null || !(pv > 0)) continue; const a = parseAmt(i.a); S.prices[normIng(i.n)] = (a && a.u !== '少々' && a.q > 0) ? {u:a.u, p:pv / a.q} : {fixed:pv}; }
       const k = S.recipes.findIndex(r => r.id === draft.id);
       if (k >= 0) S.recipes[k] = draft; else S.recipes.unshift(draft);
       save(); openDetail(draft.id); toast('保存しました'); break;
@@ -1301,7 +2025,52 @@ document.addEventListener('click', async e => {
     case 'request': askText('相手にひとこと（任意）', '例：寒いからあったかいのがいい', 'リクエストを送る', note => {
       S.requests.unshift({id:uid(), rid:d.id, from:S.me, date:today(), note, done:false, ts:Date.now()}); save(); toast('リクエストを送りました（相手の「今日なに食べる」に届きます）'); }); break;
     case 'addvote': if (!S.vote.items.some(v => v.rid === d.id)) S.vote.items.push({rid:d.id, votes:[S.me]}); save(); toast('今日の候補に入れて、1票入れました'); break;
-    case 'log': { const r = byId(d.id); r.logs.push({date:today(), by:UI.logby || S.me, rate:UI.lograte || 4, memo:document.getElementById('logmemo').value.trim()}); reDetail(); toast('記録しました'); break; }
+    case 'log': { const r = byId(d.id), memo = document.getElementById('logmemo').value.trim(), by = UI.logby || S.me, rate = UI.lograte || 4;
+      document.getElementById('logmemo').value = '';
+      const ld = document.getElementById('logdate')?.value || today();
+      r.logs.push({date:ld > today() ? today() : ld, by, rate, memo}); const w = r.want; r.want = false; reDetail(); toast(w ? '記録しました（作りたいリストから外しました）' : '記録しました'); setTimeout(checkCelebrate, 600); break; }
+    case 'gsave': guestWrite({guest:{note:(document.getElementById('gnote')?.value || '').trim()}}).then(ok => ok && toast('送りました')); break;
+    case 'mkparty': {
+      S.party.title = (document.getElementById('ptitle')?.value || '').trim() || `${S.name}の宅飲み`;
+      const pid = randId(16); t.disabled = true;
+      fb.db.collection('parties').doc(pid).set(Object.assign({hid:HID, created:Date.now(), exp:Date.now() + 14 * 86400000, votes:{}, guests:{}}, partyPublic()))
+        .then(() => { S.party.share = {pid}; base.p = JSON.stringify(partyPublic()); commit(); toast('相談リンクを作りました'); })
+        .catch(err => { console.error(err); t.disabled = false; toast('作れませんでした。もう一度ためしてください'); });
+      break;
+    }
+    case 'copyplink': copy(`「${S.party.title || S.name + 'の宅飲み'}」のメニュー相談！食べたいものに「いいね」して、参加できるか教えてね🍻\n${SITE}?party=${S.party.share.pid}`, document.getElementById('plink')); break;
+    case 'shareplink': try { await navigator.share({title:S.party.title || 'うちごはん帖', text:'宅飲みのメニュー相談！食べたいものに「いいね」して、参加できるか教えてね', url:`${SITE}?party=${S.party.share.pid}`}); } catch(e){} break;
+    case 'plapply': S.party.people = Math.max(1, Math.min(30, Number(d.n))); commit(); toast(`大人の人数を${S.party.people}人にしました`); break;
+    case 'plend': ask('相談を終わりますか？', '相談リンクが使えなくなり、友達の「いいね」や返事も消えます。メニューと割り勘はこのまま残ります。', '終わる', () => {
+      const pid = S.party.share?.pid; S.party.share = null; UI.pl = null; UI.plSub = null; commit();
+      if (pid) fb.db.collection('parties').doc(pid).delete().catch(e => console.error(e)); toast('相談を終わりました'); }); break;
+    case 'sharerec': openShare(byId(d.id)); break;
+    case 'addshared': addSharedToBook(t); break;
+    case 'a2hsoff': LS.set('ug-a2hs', '1'); render(); break;
+    case 'toweek': pickDay(iso => { S.week = S.week || {}; (S.week[iso] = S.week[iso] || []).push(d.id); save(); toast(`${md(iso)}の献立に入れました`); }); break;
+    case 'lognophoto': UI.logPhoto = null; redrawDetail(); break;
+    case 'memnew': openMemEditor(); break;
+    case 'memsave': {
+      readMemForm(); const m = mdraft, r = m.rid ? byId(m.rid) : null;
+      if (!r && !m.name && !m.photo && !m.memo) { toast('写真・料理名・ひとことのどれかを入れてください'); break; }
+      const mem = {id:m.id, rid:r ? r.id : '', name:r ? r.name : (m.name || 'ごはん'), date:m.date, by:m.by, rate:m.rate, memo:m.memo, photo:m.photo, ts:Date.now()};
+      S.memories = S.memories || []; S.memories.unshift(mem);
+      if (r) r.logs.push({date:m.date, by:m.by, rate:m.rate, memo:m.memo, mid:mem.id});
+      mdraft = null; closeLayer(); UI.tab = 'album'; commit(); toast('思い出を保存しました'); break;
+    }
+    case 'mkcode': t.disabled = true; makeCode().then(c => { UI.code = c; openSettings(); }).catch(err => { console.error(err); t.disabled = false; toast('コードを発行できませんでした'); }); break;
+    case 'usecode': useCode(document.getElementById('jc').value); break;
+    case 'export': exportJSON(); break;
+    case 'exporttxt': exportText(); break;
+    case 'shelf': {
+      const p = predictShelf(draft);
+      draft.keepF = p.fLow; draft.keepZ = p.z || '';
+      const kf = document.getElementById('e-kf'), kz = document.getElementById('e-kz'); if (kf) kf.value = draft.keepF; if (kz) kz.value = draft.keepZ;
+      document.getElementById('shelfnote').innerHTML = `<div class="shelf"><b>目安：冷蔵 ${p.fridgeTxt}・${p.freezeTxt}</b>${[...p.notes, ...p.noFreeze.map(x => '冷凍：' + x)].map(x => `<span>・${esc(x)}</span>`).join('')}<span class="hint">材料と作り方からの大まかな予測です。少し短めに入れています。</span></div>`;
+      break;
+    }
+    case 'want': { const r = byId(d.id); r.want = !r.want; reDetail(); toast(r.want ? '作りたいリストに入れました' : '作りたいリストから外しました'); break; }
+    case 'forkhh': ask('自分用にコピーしますか？', `「${S.name}」のレシピをすべてコピーして、あなただけの新しいレシピ帳を作ります。今のレシピ帳はそのまま残るので、ほかのメンバーは引き続き使えます。この端末は新しいレシピ帳に切り替わります。`, 'コピーして独立する', () => forkHousehold().catch(err => { console.error(err); toast('コピーできませんでした。もう一度ためしてください'); })); break;
     case 'clearvote': ask('候補をリセットしますか？', '今日の候補と投票が消えます。', 'リセット', () => { S.vote.items = []; commit(); }); break;
     case 'randall': {
       if (!UI.randCats.length) { toast('種類を1つ以上選んでください'); break; }
@@ -1328,6 +2097,7 @@ document.addEventListener('click', async e => {
 document.addEventListener('input', e => {
   const el = e.target;
   if (el.id === 'q') { UI.q = el.value; render(); return; }
+  if (['pz','px','py'].includes(el.id)) { draft.pos = draft.pos || {x:50, y:50, z:1}; draft.pos[el.id[1]] = Number(el.value); const pv = document.getElementById('pv'); if (pv) pv.setAttribute('style', imgStyle(draft)); return; }
   if (el.closest('.sheet') && (el.dataset.k || el.dataset.ing != null || el.dataset.step != null)) { syncDraft(el); return; }
   if (el.dataset.ex != null) { S.party.extras[el.dataset.ex][el.dataset.f] = el.value; save(); refreshParty(); return; }
   if (el.dataset.py != null) { S.party.payers[el.dataset.py][el.dataset.f] = el.value; save(); refreshParty(); return; }
@@ -1339,9 +2109,16 @@ function refreshParty(){ // keep focus while typing numbers
 }
 document.addEventListener('change', async e => {
   const el = e.target;
-  if (el.id === 'me') { S.me = el.value; commit(); toast(`${meName(S.me)}として使っています`); return; }
+  if (el.id === 'me') { S.me = el.value; commit(); setTimeout(checkCelebrate, 500); toast(`${meName(S.me)}として使っています`); return; }
   if (el.id === 'padd' && el.value) { S.party.rids.push(el.value); commit(); return; }
-  if (el.id === 'photo' && el.files[0]) { try { draft.photo = await compress(el.files[0]); drawEditor(!!byId(draft.id)); } catch(err){ toast('この写真は読み込めませんでした。別の写真を選んでください'); } return; }
+  if (el.id === 'e-want') { draft.want = el.checked; return; }
+  if (el.dataset.sphoto != null && el.files[0]) { try { draft.steps[el.dataset.sphoto].photo = await compress(el.files[0], 480); const y = document.querySelector('.sheet')?.scrollTop; UI.moreOpen = true; drawEditor(!!byId(draft.id)); UI.moreOpen = false; const sh = document.querySelector('.sheet'); if (sh && y) sh.scrollTop = y; } catch(err){ toast('この写真は読み込めませんでした'); } return; }
+  if (el.id === 'opt-dinner') { S.opts = Object.assign({}, S.opts, {dinner:el.checked}); commit(); return; }
+  if ((el.id === 'logcam' || el.id === 'logpic') && el.files[0]) { try { UI.logPhoto = await compress(el.files[0], 640); redrawDetail(); } catch(err){ toast('この写真は読み込めませんでした'); } return; }
+  if ((el.id === 'mcam' || el.id === 'mpic') && el.files[0]) { try { mdraft.photo = await compress(el.files[0], 640); drawMemEditor(); } catch(err){ toast('この写真は読み込めませんでした'); } return; }
+  if (el.id === 'dintime') { S.dinner.st[S.me] = {s:'late', t:el.value}; commit(); return; }
+  if (el.id === 'importf' && el.files[0]) { importFile(el.files[0]); el.value = ''; return; }
+  if ((el.id === 'photo' || el.id === 'photoCam') && el.files[0]) { try { draft.photo = await compress(el.files[0]); draft.pos = {x:50, y:50, z:1}; UI.moreOpen = !!document.querySelector('details.more[open]'); drawEditor(!!byId(draft.id)); UI.moreOpen = false; } catch(err){ toast('この写真は読み込めませんでした。別の写真を選んでください'); } return; }
 });
 document.addEventListener('keydown', e => {
   if (e.key === 'Enter' && e.target.id === 'frnew') { e.preventDefault(); document.querySelector('[data-act="fradd"]').click(); }
